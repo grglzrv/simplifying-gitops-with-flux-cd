@@ -1,1 +1,1 @@
-# simplifying-gitops-with-flux-cd
+# BOOK TITLE: Simplifying GitOps with Flux CD
