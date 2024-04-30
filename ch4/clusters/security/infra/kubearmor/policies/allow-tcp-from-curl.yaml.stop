@@ -1,0 +1,17 @@
+apiVersion: security.kubearmor.com/v1
+kind: KubeArmorPolicy
+metadata:
+  name: ksp-green-net-tcp-allow-curl
+  namespace: default
+spec:
+  severity: 8
+  selector:
+    matchLabels:
+      app: green
+  network:
+    matchProtocols:
+    - protocol: tcp
+      fromSource:
+      - path: /usr/bin/curl
+  action:
+    Allow
