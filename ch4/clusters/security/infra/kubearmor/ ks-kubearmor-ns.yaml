@@ -5,7 +5,7 @@ metadata:
   name: kubearmor-ns
   namespace: flux-system
 spec:
-  path: ./clusters/security/infra/kubearmor/ns
+  path: ./ch4/clusters/security/infra/kubearmor/ns
   prune: false
   sourceRef:
     kind: GitRepository

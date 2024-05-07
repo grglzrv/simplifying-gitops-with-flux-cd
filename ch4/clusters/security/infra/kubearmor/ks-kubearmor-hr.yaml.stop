@@ -7,7 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: kubearmor-ns
-  path: /clusters/security/infra/kubearmor/app
+  path: ./ch4/clusters/security/infra/kubearmor/app
   prune: false
   sourceRef:
     kind: GitRepository
