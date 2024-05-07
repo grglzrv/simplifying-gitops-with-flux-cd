@@ -25,3 +25,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  # Enable decryption
+  decryption:
+    # Use the sops provider
+    provider: sops
+    secretRef:
+      # Reference the new 'sops-age' secret
+      name: sops-age
