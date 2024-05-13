@@ -10,14 +10,14 @@ metadata:
   name: kubearmorconfig-default
   namespace: kubearmor
 spec:
-  defaultCapabilitiesPosture: audit
-  defaultFilePosture: audit
-  defaultNetworkPosture: audit
+  defaultCapabilitiesPosture: block
+  defaultFilePosture: block
+  defaultNetworkPosture: block
   defaultVisibility: process,network,file
   seccompEnabled: false
-  enableStdOutLogs: false
+  enableStdOutLogs: true
   enableStdOutAlerts: true
-  enableStdOutMsgs: false
+  enableStdOutMsgs: true
   kubearmorImage:
     image: kubearmor/kubearmor:latest
     imagePullPolicy: IfNotPresent

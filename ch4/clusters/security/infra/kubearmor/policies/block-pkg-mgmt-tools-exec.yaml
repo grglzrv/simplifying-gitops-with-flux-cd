@@ -1,13 +1,11 @@
 apiVersion: security.kubearmor.com/v1
 kind: KubeArmorPolicy
 metadata:
-  name: ksp-red-block-process
-  namespace: default
+  name: block-pkg-mgmt-tools-exec
 spec:
-  severity: 3
   selector:
     matchLabels:
-      app: red
+      app: nginx
   process:
     matchPaths:
     - path: /usr/bin/apt
