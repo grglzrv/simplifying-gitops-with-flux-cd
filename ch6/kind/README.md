@@ -38,22 +38,22 @@ Here are the steps to bootstrap FluxCD on your local Kubernetes cluster
 
 ### Install the Flux CLI
 
-Use the command below to install the Flux CLI. Remember to replace 2.2.3 with the version number you want to install.
+Use the command below to install the Flux CLI. Remember to replace 2.3.0 with the version number you want to install.
 
 ```bash
-curl -s https://fluxcd.io/install.sh | sudo FLUX_VERSION=2.2.3 bash
+curl -s https://fluxcd.io/install.sh | sudo FLUX_VERSION=2.3.0 bash
 ```
 
 ### Bootstrap Flux 
 
-The `flux bootstrap` command can be used for the initial installation and for upgrades as well. See the example command below. Replace version for example - `v2.2.3` with the version number you want to install.
+The `flux bootstrap` command can be used for the initial installation and for upgrades as well. See the example command below. Replace version for example - `v2.3.0` with the version number you want to install.
 
 ```bash
 export GITHUB_TOKEN=<your-token>
 flux bootstrap github --owner=<user> \
 --repository=simplifying-gitops-with-flux-cd \
---components-extra=image-reflector-controller,image-automation-controller --version v2.2.3 \
---path=ch4/clusters/security \
+--components-extra=image-reflector-controller,image-automation-controller --version v2.3.0 \
+--path=ch6/clusters/flagger \
 --cluster-domain=cluster.local \
 --branch=main \
 --private=false \
