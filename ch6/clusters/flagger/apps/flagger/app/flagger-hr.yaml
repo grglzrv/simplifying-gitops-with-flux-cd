@@ -24,11 +24,14 @@ spec:
         provider: cosign 
   values:
     loglevel: debug
-    meshProvider: "linkerd"
-    namespace: "flagger-system"
-    metricsServer: "http://prometheus.linkerd-viz:9090" # Prometheus Viz from Linkerd
-    linkerdAuthPolicy:
+    prometheus:
+      install: true
+    meshProvider: "kubernetes"
+#    meshProvider: "linkerd"
+#    namespace: "flagger-system"
+#    metricsServer: "http://prometheus.linkerd-viz:9090" # Prometheus Viz from Linkerd
+#    linkerdAuthPolicy:
       # linkerdAuthPolicy.create: Whether to create an AuthorizationPolicy in
       # linkerd viz' namespace to allow flagger to reach viz' prometheus service
-      create: true
-      namespace: linkerd-viz      
+#      create: true
+#      namespace: linkerd-viz      
