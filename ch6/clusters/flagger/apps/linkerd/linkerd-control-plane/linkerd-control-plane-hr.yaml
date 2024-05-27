@@ -22,7 +22,7 @@ spec:
         name: linkerd-edge
   valuesFrom:
     - kind: Secret
-      name: linkerd-identity-issuer
+      name: linkerd-root-ca
       valuesKey: ca.crt
       targetPath: identityTrustAnchorsPEM
     - kind: Secret
