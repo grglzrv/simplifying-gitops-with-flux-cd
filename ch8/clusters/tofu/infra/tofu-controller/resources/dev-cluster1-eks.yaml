@@ -1,7 +1,8 @@
+---
 apiVersion: infra.contrib.fluxcd.io/v1alpha2
 kind: Terraform
 metadata:
-  name: dev-eks
+  name: dev-cluster1-eks
   namespace: terraform
 spec:
   approvePlan: auto
@@ -9,35 +10,22 @@ spec:
   destroyResourcesOnDeletion: false
   retryInterval: "15s"
   interval: 24h
-  path: ./ch8/clusters/tofu/infra/terrafrom/eks
+  path: ./terraform/cluster1/eks
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: ch8-tofu-eks
     namespace: flux-system
   storeReadablePlan: human
   serviceAccountName: "tofu-controller-sa"
+  dependsOn:
+  - name: dev-cluster1-networking
+    namespace: terraform
   backendConfig:
     customConfiguration: |
       backend "s3" {
         bucket         = "tofu-dev-eks"
-        dynamodb_table = "tofu-dev-ek-tf-state-lock"
-        key            = "tofu-dev/eks.tfstate"
+        dynamodb_table = "tofu-dev-eks-tf-state-lock"
+        key            = "tofu-dev-cluster1/eks.tfstate"
         region         = "us-east-1"
         encrypt        = true
       }
-  fileMappings:
-  - location: home
-    path: ".ssh/id_rsa"
-    secretRef:
-      key: identity
-      name: flux-system
-  - location: home
-    path: ".ssh/id_rsa.pub"
-    secretRef:
-      key: identity.pub
-      name: flux-system
-  - location: home
-    path: ".ssh/known_hosts"
-    secretRef:
-      key: known_hosts
-      name: flux-system
