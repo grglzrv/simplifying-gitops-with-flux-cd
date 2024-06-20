@@ -19,7 +19,7 @@ spec:
   backendConfig:
     customConfiguration: |
       backend "s3" {
-        bucket         = "tofu-dev-ekss"
+        bucket         = "tofu-dev-eks"
         dynamodb_table = "tofu-dev-ek-tf-state-lock"
         key            = "tofu-dev/eks.tfstate"
         region         = "us-east-1"
@@ -30,14 +30,14 @@ spec:
     path: ".ssh/id_rsa"
     secretRef:
       key: identity
-      name: terraform
+      name: flux-system
   - location: home
     path: ".ssh/id_rsa.pub"
     secretRef:
       key: identity.pub
-      name: terraform
+      name: flux-system
   - location: home
     path: ".ssh/known_hosts"
     secretRef:
       key: known_hosts
-      name: terraform
+      name: flux-system
