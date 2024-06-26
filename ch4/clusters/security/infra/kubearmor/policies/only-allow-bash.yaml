@@ -1,18 +1,17 @@
 apiVersion: security.kubearmor.com/v1
 kind: KubeArmorPolicy
 metadata:
-  name: only-allow-nginx-exec
+  name: only-allow-bash
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: ubuntu
   file:
     matchDirectories:
     - dir: /
       recursive: true  
   process:
     matchPaths:
-    - path: /usr/sbin/nginx
     - path: /bin/bash
   action:
     Allow

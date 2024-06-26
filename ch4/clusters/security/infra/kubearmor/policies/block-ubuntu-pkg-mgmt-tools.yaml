@@ -1,11 +1,11 @@
 apiVersion: security.kubearmor.com/v1
 kind: KubeArmorPolicy
 metadata:
-  name: block-pkg-mgmt-tools-exec
+  name: block-ubuntu-pkg-mgmt-tools
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: ubuntu
   process:
     matchPaths:
     - path: /usr/bin/apt
