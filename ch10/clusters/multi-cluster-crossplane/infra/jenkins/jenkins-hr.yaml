@@ -4,7 +4,6 @@ metadata:
   name: jenkins
   namespace: jenkins
 spec:
-  interval: 1m
   chart:
     spec:
       chart: jenkins
@@ -13,6 +12,16 @@ spec:
         name: jenkins
         namespace: flux-system
       version: ">=4.0.0"
+  interval: 1m
+  maxHistory: 3
+  install:
+    disableWait: true
+  upgrade:
+    disableWait: true
+    cleanupOnFail: true
+  rollback:
+    disableWait: true
+    cleanupOnFail: true
   values:
     controller:
       cloudName: "packt"
