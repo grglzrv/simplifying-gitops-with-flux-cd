@@ -4,4 +4,4 @@ kind: Configuration
 metadata:
   name: crossplane-k8s
 spec:
-  package: lazarovg/k8s-lazarovg:v0.1.0
+  package: lazarovg/k8s-lazarovg:v0.2.0
