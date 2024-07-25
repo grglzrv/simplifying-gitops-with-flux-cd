@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: crossplane
+  name: crossplane-packt
   namespace: flux-system
 spec:
   interval: 1m0s
@@ -10,4 +10,4 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: ssh:/git@github.com:grglzrv/crossplane.git
+  url: ssh:/git@github.com:grglzrv/crossplane-packt.git
