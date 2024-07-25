@@ -4,7 +4,7 @@ metadata:
   name: flux
   namespace: flux-system
   annotations:
-    fluxcd.controlplane.io/reconcileEvery: "1h"
+    fluxcd.controlplane.io/reconcileEvery: "1m"
     fluxcd.controlplane.io/reconcileTimeout: "5m"
 spec:
   distribution:
