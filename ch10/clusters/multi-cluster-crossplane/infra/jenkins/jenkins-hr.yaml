@@ -33,10 +33,10 @@ spec:
       resources:
         requests:
           cpu: "1"
-          memory: "1Gi"
+          memory: "4Gi"
         limits:
           cpu: "1"
-          memory: "1Gi"
+          memory: "4Gi"
       ingress:
         enabled: false
         
