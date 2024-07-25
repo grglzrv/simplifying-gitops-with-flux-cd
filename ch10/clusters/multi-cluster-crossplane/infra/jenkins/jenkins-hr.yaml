@@ -1,0 +1,69 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: jenkins
+  namespace: jenkins
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: jenkins
+      sourceRef:
+        kind: HelmRepository
+        name: jenkins
+        namespace: flux-system
+      version: ">=4.0.0"
+  values:
+    controller:
+      cloudName: "packt"
+      image:
+        tagLabel: "lts-jdk17"
+      podSecurityContextOverride:
+        runAsNonRoot: true
+        runAsUser: 1000
+        supplementalGroups: [1000]
+
+      javaOpts: >-
+        -Xms28672m
+        -Xmx28672m
+        -XX:+UnlockExperimentalVMOptions
+        -XX:+UseContainerSupport
+        -XX:ActiveProcessorCount=1
+        -XX:+UseG1GC
+      resources:
+        requests:
+          cpu: "1"
+          memory: "1Gi"
+        limits:
+          cpu: "1"
+          memory: "1Gi"
+      ingress:
+        enabled: false
+        
+      installPlugins: []
+
+      markupFormatter:
+        rawHtml:
+          disableSyntaxHighlighting: false
+
+      JCasC:
+        defaultConfig: true
+        configScripts:
+          welcome-message: |
+            jenkins:
+              systemMessage: Welcome to Jenkins CI/CD server. This Jenkins is configured and managed 'as code'.
+          libraries: |
+            unclassified:
+              globalLibraries:
+                libraries:
+                - defaultVersion: "main"
+                  implicit: true
+                  name: "build-library"
+                  retriever:
+                    modernSCM:
+                      scm:
+                        git:
+                          credentialsId: "github-creds"
+                          remote: "git@github.com:grglzrv/maven-test-shared-libs.git"
+                          traits:
+                          - "gitBranchDiscovery"
