@@ -33,8 +33,8 @@ spec:
         supplementalGroups: [1000]
 
       javaOpts: >-
-        -Xms28672m
-        -Xmx28672m
+        -Xms4000m
+        -Xmx4000m
         -XX:+UnlockExperimentalVMOptions
         -XX:+UseContainerSupport
         -XX:ActiveProcessorCount=1
