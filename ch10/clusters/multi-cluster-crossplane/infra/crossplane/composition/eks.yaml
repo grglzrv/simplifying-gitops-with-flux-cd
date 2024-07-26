@@ -80,7 +80,7 @@ spec:
             maxSize: 10
             desiredSize: 1
           instanceTypes:
-            - t3.small
+            - t2.small
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
