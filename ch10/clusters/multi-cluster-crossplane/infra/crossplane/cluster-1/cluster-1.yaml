@@ -2,6 +2,7 @@ apiVersion: prodready.cluster/v1alpha1
 kind: ClusterClaim
 metadata:
   name: crossplane-eks
+  namespace: flux-system
   labels:
     cluster-owner: cp 
 spec:
