@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: crossplane-provider-kubernetes
 spec:
-  package: crossplane-contrib/provider-kubernetes:v0.14.0
+  package: crossplane/provider-kubernetes:main

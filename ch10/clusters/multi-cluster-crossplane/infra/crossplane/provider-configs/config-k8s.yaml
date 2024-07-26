@@ -4,4 +4,4 @@ kind: Configuration
 metadata:
   name: crossplane-k8s
 spec:
-  package: lazarovg/k8s-lazarovg:v0.2.0
+  package: cemaltuner/crossplane-k8s:v0.2.14
