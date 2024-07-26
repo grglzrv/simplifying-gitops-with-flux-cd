@@ -9,7 +9,7 @@ spec:
   compositeTypeRef:
     apiVersion: prodready.cluster/v1alpha1
     kind: CompositeCluster
-  writeConnectionSecretsToNamespace: crossplane-system
+  writeConnectionSecretsToNamespace: crossplane
   patchSets:
   - name: metadata
     patches:
@@ -474,7 +474,7 @@ spec:
       spec:
         rollbackLimit: 3
         forProvider:
-          namespace: crossplane-system
+          namespace: crossplane
           chart:
             name: crossplane
             repository: https://charts.crossplane.io/stable
@@ -562,7 +562,7 @@ spec:
             kind: ServiceAccount
             metadata:
               name: provider-kubernetes
-              namespace: crossplane-system
+              namespace: crossplane
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
@@ -586,7 +586,7 @@ spec:
             subjects:
             - kind: ServiceAccount
               name: provider-kubernetes
-              namespace: crossplane-system
+              namespace: crossplane
             roleRef:
               kind: ClusterRole
               name: cluster-admin
