@@ -1,11 +1,11 @@
 apiVersion: prodready.cluster/v1alpha1
 kind: ClusterClaim
 metadata:
-  name: crossplane-eks-1
+  name: crossplane-eks
   labels:
     cluster-owner: cp 
 spec:
-  id: crossplane-eks-1
+  id: crossplane-eks
   compositionSelector:
     matchLabels:
       provider: aws
