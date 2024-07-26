@@ -1,3 +1,10 @@
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: debug-config
+spec:
+  args:
+    - --debug
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -5,3 +12,5 @@ metadata:
   name: crossplane-provider-aws
 spec:
   package: crossplane/provider-aws:v0.22.0
+  controllerConfigRef:
+    name: debug-config
