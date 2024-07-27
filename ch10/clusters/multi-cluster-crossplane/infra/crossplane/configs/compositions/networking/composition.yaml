@@ -23,18 +23,18 @@ spec:
 
   resources:
     ### VPC and InternetGateway
-    - name: platform-vcp
+    - name: devops-vcp
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: VPC
         spec:
           forProvider:
-            cidrBlock: 10.0.0.0/16
+            cidrBlock: 10.50.0.0/16
             enableDnsSupport: true
             enableDnsHostnames: true
             tags:
-              Owner: Platform Team
-              Name: platform-vpc
+              Owner: DevOps Team
+              Name: devops-crossplane-vpc
       patches:
         - type: PatchSet
           patchSetName: networkconfig
@@ -65,7 +65,7 @@ spec:
         spec:
           forProvider:
             mapPublicIpOnLaunch: true
-            cidrBlock: 10.0.0.0/24
+            cidrBlock: 10.50.0.0/24
             vpcIdSelector:
               matchControllerRef: true
             tags:
@@ -103,7 +103,7 @@ spec:
         spec:
           forProvider:
             mapPublicIpOnLaunch: true
-            cidrBlock: 10.0.1.0/24
+            cidrBlock: 10.50.1.0/24
             vpcIdSelector:
               matchControllerRef: true
             tags:
@@ -141,7 +141,7 @@ spec:
         spec:
           forProvider:
             mapPublicIpOnLaunch: true
-            cidrBlock: 10.0.2.0/24
+            cidrBlock: 10.50.2.0/24
             vpcIdSelector:
               matchControllerRef: true
             tags:
@@ -268,7 +268,7 @@ spec:
     #         description: Allow nodes to communicate with each other
     #         type: ingress
     #         cidrBlocks: # Allow all communictation in the Subnet
-    #           - 10.0.0.0/24
+    #           - 10.50.0.0/24
     #         protocol: all
     #         securityGroupIdSelector:
     #           matchLabels:

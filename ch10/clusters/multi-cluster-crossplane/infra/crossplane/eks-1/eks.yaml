@@ -1,0 +1,15 @@
+---
+apiVersion: k8s.crossplane.jonashackt.io/v1alpha1
+kind: KubernetesCluster
+metadata:
+  namespace: default
+  name: deploy-target-eks
+spec:
+  id: deploy-target-eks
+  parameters:
+    region: eu-central-1
+    nodes:
+      count: 3
+
+  writeConnectionSecretToRef:
+    name: eks-cluster-kubeconfi
