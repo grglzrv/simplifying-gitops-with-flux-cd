@@ -28,3 +28,5 @@ spec:
     disableWait: true
   values:
     replicas: 1
+    webhooks:
+      enabled: true
