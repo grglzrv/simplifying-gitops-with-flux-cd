@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: crossplane
         namespace: flux-system
-      version: "1.6.6"
+      version: "1.15.0"
   targetNamespace: crossplane-system
   interval: 1m0s
   releaseName: crossplane
@@ -28,5 +28,3 @@ spec:
     disableWait: true
   values:
     replicas: 1
-    webhooks:
-      enabled: true
