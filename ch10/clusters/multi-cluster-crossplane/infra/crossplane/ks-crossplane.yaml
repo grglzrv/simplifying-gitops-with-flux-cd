@@ -5,7 +5,7 @@ metadata:
   name: ks-crossplane-hr
   namespace: flux-system
 spec:
-  path: ./clusters/multi-cluster-crossplane/infra/crossplane/app
+  path: ./ch10/clusters/multi-cluster-crossplane/infra/crossplane/app
   prune: false
   sourceRef:
     kind: GitRepository

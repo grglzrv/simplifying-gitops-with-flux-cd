@@ -7,7 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: ks-crossplane-hr
-  path: ./clusters/multi-cluster-crossplane/infra/crossplane/configs
+  path: ./ch10/clusters/multi-cluster-crossplane/infra/crossplane/configs
   prune: false
   sourceRef:
     kind: GitRepository
