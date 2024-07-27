@@ -13,7 +13,7 @@ spec:
         name: crossplane
         namespace: flux-system
       version: "1.6.6"
-  targetNamespace: crossplane-system
+  targetNamespace: crossplane
   interval: 1m0s
   releaseName: crossplane
   maxHistory: 3
