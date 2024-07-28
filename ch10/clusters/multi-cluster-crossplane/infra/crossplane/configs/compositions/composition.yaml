@@ -46,6 +46,8 @@ spec:
           toFieldPath: spec.id
         - fromFieldPath: spec.version
           toFieldPath: spec.version
+        - fromFieldPath: spec.parameters.nodes.tags
+          toFieldPath: spec.parameters.nodes.tags
         - fromFieldPath: spec.id
           toFieldPath: metadata.annotations[crossplane.io/external-name]
         - fromFieldPath: metadata.uid
@@ -68,5 +70,3 @@ spec:
           toFieldPath: spec.parameters.securityGroupClusterIds
           policy:
             fromFieldPath: Required
-        - fromFieldPath: spec.parameters.nodes.tags
-          toFieldPath: spec.parameters.nodes.tags

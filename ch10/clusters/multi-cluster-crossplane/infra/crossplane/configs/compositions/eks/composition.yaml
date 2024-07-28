@@ -30,7 +30,7 @@ spec:
         spec:
           forProvider:
             accessConfig:
-              authenticationMode: API_AND_CONFIG_MAP
+              - authenticationMode: API_AND_CONFIG_MAP
             roleArnSelector:
               matchControllerRef: true
               matchLabels:
@@ -38,6 +38,7 @@ spec:
             vpcConfig:
               - endpointPrivateAccess: true
                 endpointPublicAccess: true
+            tags: ""
       patches:
         - type: PatchSet
           patchSetName: clusterconfig
