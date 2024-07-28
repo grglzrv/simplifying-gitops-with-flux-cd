@@ -94,7 +94,6 @@ spec:
                     {
                         "Effect": "Allow",
                         "Principal": {
-                            "AWS": "arn:aws:iam::603782460543:role/crossplane-eks-controlplane",
                             "Service": [
                                 "eks.amazonaws.com"
                             ]
@@ -187,8 +186,7 @@ spec:
                               "Service": [
                                   "cloudwatch.amazonaws.com",
                                   "ec2.amazonaws.com"
-                              ],
-                              "AWS": "arn:aws:iam::603782460543:role/crossplane-eks-workernode"
+                              ]
                           },
                           "Action": "sts:AssumeRole"
                       }
