@@ -11,4 +11,4 @@ spec:
     nodes:
       count: 3
   writeConnectionSecretToRef:
-    name: eks-cluster-kubeconfi
+    name: eks-cluster-kubeconfig
