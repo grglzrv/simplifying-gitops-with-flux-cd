@@ -38,7 +38,6 @@ spec:
             vpcConfig:
               - endpointPrivateAccess: true
                 endpointPublicAccess: true
-            tags: ""
       patches:
         - type: PatchSet
           patchSetName: clusterconfig
@@ -46,8 +45,6 @@ spec:
           toFieldPath: metadata.name
         - fromFieldPath: spec.version
           toFieldPath: spec.forProvider.version
-        - fromFieldPath: spec.parameters.nodes.tags
-          toFieldPath: spec.forProvider.tags
         # Using the XNetworking defined securityGroupClusterIds & subnetIds for the vpcConfig
         - fromFieldPath: spec.parameters.securityGroupClusterIds
           toFieldPath: spec.forProvider.vpcConfig[0].securityGroupIds
