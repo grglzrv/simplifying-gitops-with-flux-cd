@@ -18,8 +18,6 @@ spec:
       patches:
         - fromFieldPath: spec.id
           toFieldPath: spec.id
-        - fromFieldPath: spec.version
-          toFieldPath: spec.version
         - fromFieldPath: spec.parameters.region
           toFieldPath: spec.parameters.region
         # provide the subnetIds & securityGroupClusterIds for later use
