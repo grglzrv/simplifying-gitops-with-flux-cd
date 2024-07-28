@@ -10,7 +10,7 @@ spec:
   parameters:
     region: eu-central-1
     nodes:
-      count: 2
+      count: 3
       tags:
        kubernetes.io/cluster/crossplane-eks-new: shared
        Name: crossplane-eks-new
