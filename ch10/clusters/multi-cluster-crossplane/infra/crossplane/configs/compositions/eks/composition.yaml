@@ -42,7 +42,7 @@ spec:
         - fromFieldPath: spec.id
           toFieldPath: metadata.name
         - fromFieldPath: spec.version
-          toFieldPath: spec.version
+          toFieldPath: spec.forProvider.version
         # Using the XNetworking defined securityGroupClusterIds & subnetIds for the vpcConfig
         - fromFieldPath: spec.parameters.securityGroupClusterIds
           toFieldPath: spec.forProvider.vpcConfig[0].securityGroupIds
