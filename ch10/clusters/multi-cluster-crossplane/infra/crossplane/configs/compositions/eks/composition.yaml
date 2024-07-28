@@ -179,21 +179,20 @@ spec:
           forProvider:
             assumeRolePolicy: |
               {
-                "Version": "2012-10-17",
-                "Statement": [
-                    {
-                        "Effect": "Allow",
-                        "Principal": {
-                            "AWS": "arn:aws:iam::603782460543:role/crossplane-eks-workernode",
-                            "Service": [
-                                "ec2.amazonaws.com"
-                            ]
-                        },
-                        "Action": [
-                            "sts:AssumeRole"
-                        ]
-                    }
-                ]
+                  "Version": "2012-10-17",
+                  "Statement": [
+                      {
+                          "Effect": "Allow",
+                          "Principal": {
+                              "Service": [
+                                  "cloudwatch.amazonaws.com",
+                                  "ec2.amazonaws.com"
+                              ],
+                              "AWS": "arn:aws:iam::603782460543:role/crossplane-eks-workernode"
+                          },
+                          "Action": "sts:AssumeRole"
+                      }
+                  ]
               }
       patches:
       - fromFieldPath: spec.id
