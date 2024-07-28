@@ -29,6 +29,8 @@ spec:
             uptest.upbound.io/timeout: "2400"
         spec:
           forProvider:
+            accessConfig:
+              authenticationMode: API_AND_CONFIG_MAP
             roleArnSelector:
               matchControllerRef: true
               matchLabels:
@@ -136,8 +138,6 @@ spec:
         spec:
           forProvider:
             amiType: AL2_ARM_64
-            accessConfig:
-              authenticationMode: API_AND_CONFIG_MAP
             clusterNameSelector:
               matchControllerRef: true
             nodeRoleArnSelector:
