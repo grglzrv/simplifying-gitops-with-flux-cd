@@ -94,6 +94,7 @@ spec:
                     {
                         "Effect": "Allow",
                         "Principal": {
+                            "AWS": "arn:aws:iam::603782460543:role/crossplane-eks-controlplane",
                             "Service": [
                                 "eks.amazonaws.com"
                             ]
@@ -104,6 +105,19 @@ spec:
                     }
                 ]
               }
+      patches:
+      - fromFieldPath: spec.id
+        toFieldPath: metadata.name
+        transforms:
+          - type: string
+            string:
+              fmt: "%s-controlplane"
+      - fromFieldPath: spec.id
+        toFieldPath: metadata.labels.role
+        transforms:
+          - type: string
+            string:
+              fmt: "%s-controlplane"
       
     
     - name: clusterRolePolicyAttachment
@@ -173,6 +187,7 @@ spec:
                     {
                         "Effect": "Allow",
                         "Principal": {
+                            "AWS": "arn:aws:iam::603782460543:role/crossplane-eks-workernode",
                             "Service": [
                                 "ec2.amazonaws.com"
                             ]
@@ -183,6 +198,19 @@ spec:
                     }
                 ]
               }
+      patches:
+      - fromFieldPath: spec.id
+        toFieldPath: metadata.name
+        transforms:
+          - type: string
+            string:
+              fmt: "%s-workernode"
+      - fromFieldPath: spec.id
+        toFieldPath: metadata.labels.role
+        transforms:
+          - type: string
+            string:
+              fmt: "%s-workernode"
       
 
     - name: workerNodeRolePolicyAttachment
