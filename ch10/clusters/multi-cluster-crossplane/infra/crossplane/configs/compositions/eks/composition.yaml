@@ -157,8 +157,7 @@ spec:
             instanceTypes: # TODO: we can support to have that parameterized also
               - t4g.medium
             tags:
-              kubernetes.io/cluster/crossplane-eks: shared
-              Name: crossplane-eks
+              created-by: crossplane
               
       patches:
         - type: PatchSet
@@ -167,6 +166,8 @@ spec:
           toFieldPath: spec.forProvider.scalingConfig[0].desiredSize
         - fromFieldPath: spec.version
           toFieldPath: spec.forProvider.version
+        - fromFieldPath: spec.parameters.nodes.tags
+          toFieldPath: spec.forProvider.tags
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.subnetIdSelector.matchLabels[net.aws.crossplane.jonashackt.io/network-id]
         - type: ToCompositeFieldPath
