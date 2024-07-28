@@ -112,12 +112,6 @@ spec:
           - type: string
             string:
               fmt: "%s-controlplane"
-      - fromFieldPath: spec.id
-        toFieldPath: metadata.labels.role
-        transforms:
-          - type: string
-            string:
-              fmt: "%s-controlplane"
       
     
     - name: clusterRolePolicyAttachment
@@ -204,12 +198,6 @@ spec:
       patches:
       - fromFieldPath: spec.id
         toFieldPath: metadata.name
-        transforms:
-          - type: string
-            string:
-              fmt: "%s-workernode"
-      - fromFieldPath: spec.id
-        toFieldPath: metadata.labels.role
         transforms:
           - type: string
             string:
