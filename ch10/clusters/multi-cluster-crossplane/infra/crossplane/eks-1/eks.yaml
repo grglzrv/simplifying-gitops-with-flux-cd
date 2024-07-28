@@ -3,20 +3,20 @@ apiVersion: k8s.crossplane.jonashackt.io/v1alpha1
 kind: KubernetesCluster
 metadata:
   namespace: default
-  name: crossplane-eks-new
+  name: crossplane-eks-1
 spec:
-  id: crossplane-eks-new
-  version: "1.29"
+  id: crossplane-eks-1
+  version: "1.30"
   parameters:
     region: eu-central-1
     nodes:
-      count: 3
+      count: 2
       tags:
-       kubernetes.io/cluster/crossplane-eks-new: shared
-       Name: crossplane-eks-new
+       kubernetes.io/cluster/crossplane-eks-1: shared
+       Name: crossplane-eks-1
     subnets:
       tags:
-        kubernetes.io/cluster/crossplane-eks-new: owned
+        kubernetes.io/cluster/crossplane-eks-1: owned
         kubernetes.io/role/elb: "1"
   writeConnectionSecretToRef:
     name: eks-cluster-kubeconfig
