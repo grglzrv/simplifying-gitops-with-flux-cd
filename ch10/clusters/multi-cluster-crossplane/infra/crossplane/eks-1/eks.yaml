@@ -17,5 +17,6 @@ spec:
     subnets:
       tags:
         kubernetes.io/cluster/crossplane-eks-new: owned
+        kubernetes.io/role/elb: "1"
   writeConnectionSecretToRef:
     name: eks-cluster-kubeconfig
