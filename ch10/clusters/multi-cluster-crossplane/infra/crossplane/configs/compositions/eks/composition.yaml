@@ -136,6 +136,8 @@ spec:
         spec:
           forProvider:
             amiType: AL2_ARM_64
+            accessConfig:
+              authenticationMode: API_AND_CONFIG_MAP
             clusterNameSelector:
               matchControllerRef: true
             nodeRoleArnSelector:
