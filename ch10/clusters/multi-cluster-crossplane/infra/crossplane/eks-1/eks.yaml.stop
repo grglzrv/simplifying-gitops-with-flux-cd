@@ -6,6 +6,7 @@ metadata:
   name: crossplane-eks
 spec:
   id: crossplane-eks
+  version: 1.30
   parameters:
     region: eu-central-1
     nodes:

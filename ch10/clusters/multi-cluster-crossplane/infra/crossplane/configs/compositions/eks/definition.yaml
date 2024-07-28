@@ -42,6 +42,9 @@ spec:
               id:
                 type: string
                 description: ID of this Cluster that other objects will use to refer to it.
+              version:
+                type: string
+                description: Kubernetes version. Defaults to EKS Cluster Kubernetes version.
               parameters:
                 type: object
                 description: EKS configuration parameters.

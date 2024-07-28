@@ -140,6 +140,7 @@ spec:
         kind: NodeGroup
         spec:
           forProvider:
+            amiType: AL2_ARM_64
             clusterNameSelector:
               matchControllerRef: true
             nodeRoleArnSelector:
@@ -160,6 +161,8 @@ spec:
           patchSetName: clusterconfig
         - fromFieldPath: spec.parameters.nodes.count
           toFieldPath: spec.forProvider.scalingConfig[0].desiredSize
+        - fromFieldPath: spec.version
+          toFieldPath: spec.forProvider.version
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.subnetIdSelector.matchLabels[net.aws.crossplane.jonashackt.io/network-id]
         - type: ToCompositeFieldPath
@@ -245,6 +248,18 @@ spec:
         spec:
           forProvider:
             policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+            roleSelector:
+              matchControllerRef: true
+              matchLabels:
+                role: nodegroup
+
+    - name: ec2FullAccessRolePolicyAttachment
+      base:
+        apiVersion: iam.aws.upbound.io/v1beta1
+        kind: RolePolicyAttachment
+        spec:
+          forProvider:
+            policyArn: arn:aws:iam::aws:policy/AmazonEC2FullAccess
             roleSelector:
               matchControllerRef: true
               matchLabels:
