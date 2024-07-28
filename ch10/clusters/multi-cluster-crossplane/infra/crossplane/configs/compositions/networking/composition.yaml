@@ -69,7 +69,7 @@ spec:
             vpcIdSelector:
               matchControllerRef: true
             tags:
-              kubernetes.io/role/elb: "1"
+              created-by: crossplane
       patches:
         - type: PatchSet
           patchSetName: networkconfig
@@ -109,7 +109,7 @@ spec:
             vpcIdSelector:
               matchControllerRef: true
             tags:
-              kubernetes.io/role/elb: "1"
+              created-by: crossplane
       patches:
         - type: PatchSet
           patchSetName: networkconfig
@@ -149,7 +149,7 @@ spec:
             vpcIdSelector:
               matchControllerRef: true
             tags:
-              kubernetes.io/role/elb: "1"
+              created-by: crossplane
       patches:
         - type: PatchSet
           patchSetName: networkconfig
