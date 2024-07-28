@@ -151,6 +151,10 @@ spec:
                 desiredSize: 1
             instanceTypes: # TODO: we can support to have that parameterized also
               - t4g.medium
+            tags:
+              kubernetes.io/cluster/crossplane-eks: shared
+              Name: crossplane-eks
+              
       patches:
         - type: PatchSet
           patchSetName: clusterconfig
