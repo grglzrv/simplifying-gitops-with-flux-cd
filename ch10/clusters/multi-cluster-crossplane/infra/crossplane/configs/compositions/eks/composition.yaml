@@ -155,7 +155,7 @@ spec:
                 maxSize: 10
                 desiredSize: 1
             instanceTypes: # TODO: we can support to have that parameterized also
-              - t3.medium
+              - t4g.medium
       patches:
         - type: PatchSet
           patchSetName: clusterconfig
