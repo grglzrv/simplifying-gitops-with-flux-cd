@@ -43,8 +43,25 @@ spec:
                       count:
                         type: integer
                         description: Desired node count, from 1 to 100.
+                      tags:
+                        type: object
+                        additionalProperties:
+                          type: string
+                        description: Tags to apply to the NodeGroup.
                     required:
                     - count
+                    - tags
+                  subnets:
+                    type: object
+                    description: VPC Subnets tags configuration parameters.
+                    properties:
+                      tags:
+                        type: object
+                        additionalProperties:
+                          type: string
+                        description: Tags to apply to the Subnets.
+                    required:
+                    - tags
                 required:
                 - region
                 - nodes

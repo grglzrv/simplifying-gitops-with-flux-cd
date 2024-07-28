@@ -11,5 +11,11 @@ spec:
     region: eu-central-1
     nodes:
       count: 3
+      tags:
+       kubernetes.io/cluster/crossplane-eks: shared
+       Name: crossplane-eks
+    subnets:
+      tags:
+        kubernetes.io/cluster/crossplane-eks: owned
   writeConnectionSecretToRef:
     name: eks-cluster-kubeconfig

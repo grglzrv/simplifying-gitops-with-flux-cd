@@ -70,10 +70,11 @@ spec:
               matchControllerRef: true
             tags:
               kubernetes.io/role/elb: "1"
-              kubernetes.io/cluster/crossplane-eks: owned
       patches:
         - type: PatchSet
           patchSetName: networkconfig
+        - fromFieldPath: spec.parameters.subnets.tags
+          toFieldPath: spec.forProvider.tags
         # define eu-central-1a as zone & availabilityZone
         - type: FromCompositeFieldPath
           fromFieldPath: spec.parameters.region
@@ -109,10 +110,11 @@ spec:
               matchControllerRef: true
             tags:
               kubernetes.io/role/elb: "1"
-              kubernetes.io/cluster/crossplane-eks: owned
       patches:
         - type: PatchSet
           patchSetName: networkconfig
+        - fromFieldPath: spec.parameters.subnets.tags
+          toFieldPath: spec.forProvider.tags
           # define eu-central-1b as zone & availabilityZone
         - type: FromCompositeFieldPath
           fromFieldPath: spec.parameters.region
@@ -148,10 +150,11 @@ spec:
               matchControllerRef: true
             tags:
               kubernetes.io/role/elb: "1"
-              kubernetes.io/cluster/crossplane-eks: owned
       patches:
         - type: PatchSet
           patchSetName: networkconfig
+        - fromFieldPath: spec.parameters.subnets.tags
+          toFieldPath: spec.forProvider.tags
           # define eu-central-1c as zone & availabilityZone
         - type: FromCompositeFieldPath
           fromFieldPath: spec.parameters.region

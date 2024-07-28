@@ -67,8 +67,14 @@ spec:
                       count:
                         type: integer
                         description: Desired node count, from 1 to 10.
+                      tags:
+                        type: object
+                        additionalProperties:
+                          type: string
+                        description: Tags to apply to the NodeGroup.
                     required:
                     - count
+                    - tags
                 required:
                 - subnetIds
                 - securityGroupClusterIds

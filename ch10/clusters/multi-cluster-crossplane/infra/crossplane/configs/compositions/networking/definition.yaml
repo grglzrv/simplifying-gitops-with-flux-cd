@@ -31,6 +31,17 @@ spec:
                   properties:
                     region:
                       type: string
+                    subnets:
+                      type: object
+                      description: VPC Subnets tags configuration parameters.
+                      properties:
+                        tags:
+                          type: object
+                          additionalProperties:
+                            type: string
+                          description: Tags to apply to the Subnets.
+                      required:
+                      - tags
                   required:
                     - region
               required:
