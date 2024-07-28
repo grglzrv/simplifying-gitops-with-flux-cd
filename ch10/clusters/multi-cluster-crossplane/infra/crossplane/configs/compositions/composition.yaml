@@ -42,6 +42,8 @@ spec:
       patches:
         - fromFieldPath: spec.id
           toFieldPath: spec.id
+        - fromFieldPath: spec.version
+          toFieldPath: spec.version
         - fromFieldPath: spec.id
           toFieldPath: metadata.annotations[crossplane.io/external-name]
         - fromFieldPath: metadata.uid
