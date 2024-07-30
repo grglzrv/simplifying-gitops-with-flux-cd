@@ -2,21 +2,21 @@ apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
   # XRDs must be named 'x<plural>.<group>'
-  name: xeksclusters.eks.aws.crossplane.jonashackt.io
+  name: xawsekss.eks.aws.crossplane.lazaroff.pro
 spec:
-  # This XRD defines an XR in the 'crossplane.jonashackt.io' API group.
+  # This XRD defines an XR in the 'crossplane.lazaroff.pro' API group.
   # The XR or Claim must use this group together with the spec.versions[0].name as it's apiVersion, like this:
-  # 'crossplane.jonashackt.io/v1alpha1'
-  group: eks.aws.crossplane.jonashackt.io
+  # 'crossplane.lazaroff.pro/v1alpha1'
+  group: eks.aws.crossplane.lazaroff.pro
   
   # XR names should always be prefixed with an 'X'
   names:
-    kind: XEKSCluster
-    plural: xeksclusters
+    kind: XAwsEks
+    plural: xawsekss
   # This type of XR offers a claim, which should have the same name without the 'X' prefix
   claimNames:
-    kind: EKSCluster
-    plural: ekscluster
+    kind: AwsEks
+    plural: xawseks
   
   # default Composition when none is specified (must match metadata.name of a provided Composition)
   # e.g. in composition.yaml
@@ -64,6 +64,18 @@ spec:
                     type: object
                     description: EKS node configuration parameters.
                     properties:
+                      amiType:
+                        description: The AMI type for your node group.  Valid values - AL2023_ARM_64_STANDARD, AL2023_X86_64_STANDARD, AL2_ARM_64, AL2_X86_64, BOTTLEROCKET_ARM_64, BOTTLEROCKET_X86_64 etc.
+                        type: string
+                      capacityType:
+                        description: Type of capacity associated with the EKS Node Group. Valid values - ON_DEMAND and SPOT
+                        type: string
+                      instanceTypes:
+                        description: The size of the nodes; small, medium, large
+                        type: string
+                      diskSize:
+                        type: integer
+                        description: Disk size in GiB for worker nodes. Defaults to 50 for Windows, 20 all other node groups.
                       count:
                         type: integer
                         description: Desired node count, from 1 to 10.

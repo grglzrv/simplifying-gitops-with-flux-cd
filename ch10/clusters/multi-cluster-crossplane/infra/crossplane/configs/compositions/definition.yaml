@@ -1,15 +1,15 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xkubernetesclusters.k8s.crossplane.jonashackt.io
+  name: xamazonekss.k8s.crossplane.lazaroff.pro
 spec:
-  group: k8s.crossplane.jonashackt.io
+  group: k8s.crossplane.lazaroff.pro
   names:
-    kind: XKubernetesCluster
-    plural: xkubernetesclusters
+    kind: XAmazonEKS
+    plural: xamazonekss
   claimNames:
-    kind: KubernetesCluster
-    plural: kubernetesclusters
+    kind: AmazonEKS
+    plural: amazonekss
   connectionSecretKeys:
   - kubeconfig
   versions:
@@ -20,7 +20,6 @@ spec:
       openAPIV3Schema:
         type: object
         properties:
-          # defining input parameters
           spec:
             type: object
             properties:
@@ -36,10 +35,24 @@ spec:
                 properties:
                   region:
                     type: string
+                  vpcCidrBlock:
+                    type: string
                   nodes:
                     type: object
                     description: Cluster node configuration parameters.
                     properties:
+                      amiType:
+                        description: The AMI type for your node group.  Valid values - AL2023_ARM_64_STANDARD, AL2023_X86_64_STANDARD, AL2_ARM_64, AL2_X86_64, BOTTLEROCKET_ARM_64, BOTTLEROCKET_X86_64 etc.
+                        type: string
+                      capacityType:
+                        description: Type of capacity associated with the EKS Node Group Valid values - ON_DEMAND and SPOT
+                        type: string
+                      instanceTypes:
+                        description: The size of the nodes; small, medium, large
+                        type: string
+                      diskSize:
+                        type: integer
+                        description: Disk size in GiB for worker nodes. Defaults to 50 for Windows, 20 all other node groups.
                       count:
                         type: integer
                         description: Desired node count, from 1 to 100.
@@ -53,8 +66,14 @@ spec:
                     - tags
                   subnets:
                     type: object
-                    description: VPC Subnets tags configuration parameters.
+                    description: VPC Subnets tags and CIDRs Blocks configuration parameters.
                     properties:
+                      cidrBlock-1a:
+                        type: string
+                      cidrBlock-1b:
+                        type: string
+                      cidrBlock-1c:
+                        type: string
                       tags:
                         type: object
                         additionalProperties:

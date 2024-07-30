@@ -6,8 +6,8 @@ metadata:
     provider: aws
 spec:
   compositeTypeRef:
-    apiVersion: net.aws.crossplane.jonashackt.io/v1alpha1
-    kind: XNetworking
+    apiVersion: net.aws.crossplane.lazaroff.pro/v1alpha1
+    kind: XAwsNetworking
 
   writeConnectionSecretsToNamespace: crossplane-system
 
@@ -16,7 +16,7 @@ spec:
     patches:
     - type: FromCompositeFieldPath
       fromFieldPath: spec.id
-      toFieldPath: metadata.labels[net.aws.crossplane.jonashackt.io/network-id] # the network-id other Composition MRs (like EKSCluster) will use
+      toFieldPath: metadata.labels[net.aws.crossplane.lazaroff.pro/network-id]
     - type: FromCompositeFieldPath
       fromFieldPath: spec.parameters.region
       toFieldPath: spec.forProvider.region
@@ -40,6 +40,8 @@ spec:
           patchSetName: networkconfig
         - fromFieldPath: spec.id
           toFieldPath: metadata.name
+        - fromFieldPath: spec.parameters.vpcCidrBlock
+          toFieldPath: spec.forProvider.cidrBlock
     
     - name: gateway
       base:
@@ -75,6 +77,8 @@ spec:
           patchSetName: networkconfig
         - fromFieldPath: spec.parameters.subnets.tags
           toFieldPath: spec.forProvider.tags
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-1a
+          toFieldPath: spec.forProvider.cidrBlock
         # define eu-central-1a as zone & availabilityZone
         - type: FromCompositeFieldPath
           fromFieldPath: spec.parameters.region
@@ -115,6 +119,8 @@ spec:
           patchSetName: networkconfig
         - fromFieldPath: spec.parameters.subnets.tags
           toFieldPath: spec.forProvider.tags
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-1b
+          toFieldPath: spec.forProvider.cidrBlock
           # define eu-central-1b as zone & availabilityZone
         - type: FromCompositeFieldPath
           fromFieldPath: spec.parameters.region
@@ -155,6 +161,8 @@ spec:
           patchSetName: networkconfig
         - fromFieldPath: spec.parameters.subnets.tags
           toFieldPath: spec.forProvider.tags
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-1c
+          toFieldPath: spec.forProvider.cidrBlock
           # define eu-central-1c as zone & availabilityZone
         - type: FromCompositeFieldPath
           fromFieldPath: spec.parameters.region
@@ -182,7 +190,7 @@ spec:
         kind: SecurityGroup
         metadata:
           labels:
-            net.aws.crossplane.jonashackt.io: securitygroup-cluster
+            net.aws.crossplane.lazaroff.pro: securitygroup-cluster
         spec:
           forProvider:
             description: cluster API server access
@@ -214,7 +222,7 @@ spec:
             protocol: tcp
             securityGroupIdSelector:
               matchLabels:
-                net.aws.crossplane.jonashackt.io: securitygroup-cluster
+                net.aws.crossplane.lazaroff.pro: securitygroup-cluster
       patches:
         - type: PatchSet
           patchSetName: networkconfig
@@ -234,74 +242,10 @@ spec:
             protocol: tcp
             securityGroupIdSelector:
               matchLabels:
-                net.aws.crossplane.jonashackt.io: securitygroup-cluster
+                net.aws.crossplane.lazaroff.pro: securitygroup-cluster
       patches:
         - type: PatchSet
           patchSetName: networkconfig
-
-    ### SecurityGroup & SecurityGroupRules Worker Nodes
-    ### The configs are already done by the automatically provisioned SecurityGroup:
-    ### 'EKS created security group applied to ENI that is attached to EKS Control Plane master nodes, as well as any managed workloads.'
-    # - name: securitygroup-nodepool
-    #   base:
-    #     apiVersion: ec2.aws.upbound.io/v1beta1
-    #     kind: SecurityGroup
-    #     metadata:
-    #       labels:
-    #         net.aws.crossplane.jonashackt.io: securitygroup-nodepool
-    #     spec:
-    #       forProvider:
-    #         description: worker nodes access
-    #         name: securitygroup-nodepool
-    #         vpcIdSelector:
-    #           matchControllerRef: true
-    #   patches:
-    #     - type: PatchSet
-    #       patchSetName: networkconfig
-    #     - fromFieldPath: spec.id
-    #       toFieldPath: metadata.name
-    #       # provide the securityGroupId for later use as status.securityGroupNodepoolIds entry
-    #     - type: ToCompositeFieldPath
-    #       fromFieldPath: metadata.annotations[crossplane.io/external-name]
-    #       toFieldPath: status.securityGroupNodepoolIds[0]
-
-    # - name: securitygrouprule-nodepool-inbound
-    #   base:
-    #     apiVersion: ec2.aws.upbound.io/v1beta1
-    #     kind: SecurityGroupRule
-    #     spec:
-    #       forProvider:
-    #         description: Allow nodes to communicate with each other
-    #         type: ingress
-    #         cidrBlocks: # Allow all communictation in the Subnet
-    #           - 10.50.0.0/24
-    #         protocol: all
-    #         securityGroupIdSelector:
-    #           matchLabels:
-    #             net.aws.crossplane.jonashackt.io: securitygroup-nodepool
-    #   patches:
-    #     - type: PatchSet
-    #       patchSetName: networkconfig
-
-    # - name: securitygrouprule-nodepool-outbound
-    #   base:
-    #     apiVersion: ec2.aws.upbound.io/v1beta1
-    #     kind: SecurityGroupRule
-    #     spec:
-    #       forProvider:
-    #         description: Allow internet access from the worker nodes
-    #         type: egress
-    #         cidrBlocks: # Destination
-    #           - 0.0.0.0/0
-    #         fromPort: 0
-    #         toPort: 0
-    #         protocol: tcp
-    #         securityGroupIdSelector:
-    #           matchLabels:
-    #             net.aws.crossplane.jonashackt.io: securitygroup-nodepool
-    #   patches:
-    #     - type: PatchSet
-    #       patchSetName: networkconfig
 
     ### Route, RouteTable & RouteTableAssociations
     - name: route

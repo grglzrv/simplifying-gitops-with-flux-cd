@@ -6,8 +6,8 @@ metadata:
     provider: aws
 spec:
   compositeTypeRef:
-    apiVersion: eks.aws.crossplane.jonashackt.io/v1alpha1
-    kind: XEKSCluster
+    apiVersion: eks.aws.crossplane.lazaroff.pro/v1alpha1
+    kind: XAwsEks
   
   writeConnectionSecretsToNamespace: crossplane-system
 
@@ -45,7 +45,7 @@ spec:
           toFieldPath: metadata.name
         - fromFieldPath: spec.version
           toFieldPath: spec.forProvider.version
-        # Using the XNetworking defined securityGroupClusterIds & subnetIds for the vpcConfig
+        # Using the XAwsNetworking defined securityGroupClusterIds & subnetIds for the vpcConfig
         - fromFieldPath: spec.parameters.securityGroupClusterIds
           toFieldPath: spec.forProvider.vpcConfig[0].securityGroupIds
         - fromFieldPath: spec.parameters.subnetIds
@@ -138,6 +138,8 @@ spec:
         spec:
           forProvider:
             amiType: AL2_ARM_64
+            capacityType: SPOT
+            diskSize: 100
             clusterNameSelector:
               matchControllerRef: true
             nodeRoleArnSelector:
@@ -151,7 +153,7 @@ spec:
               - minSize: 1
                 maxSize: 10
                 desiredSize: 1
-            instanceTypes: # TODO: we can support to have that parameterized also
+            instanceTypes:
               - t4g.medium
             tags:
               created-by: crossplane
@@ -165,8 +167,22 @@ spec:
           toFieldPath: spec.forProvider.version
         - fromFieldPath: spec.parameters.nodes.tags
           toFieldPath: spec.forProvider.tags
+        - fromFieldPath: spec.parameters.nodes.amiType
+          toFieldPath: spec.forProvider.amiType
+        - fromFieldPath: spec.parameters.nodes.capacityType
+          toFieldPath: spec.forProvider.capacityType
+        - fromFieldPath: spec.parameters.nodes.instanceTypes
+          toFieldPath: spec.forProvider.instanceTypes[0]
+          transforms:
+            - type: map
+              map:
+                small: t4g.small
+                medium: t4g.medium
+                large: t4g.large
+        - fromFieldPath: spec.parameters.nodes.diskSize
+          toFieldPath: spec.forProvider.diskSize
         - fromFieldPath: spec.id
-          toFieldPath: spec.forProvider.subnetIdSelector.matchLabels[net.aws.crossplane.jonashackt.io/network-id]
+          toFieldPath: spec.forProvider.subnetIdSelector.matchLabels[net.aws.crossplane.lazaroff.pro/network-id]
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.status
           toFieldPath: status.nodePoolStatus  

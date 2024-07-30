@@ -1,15 +1,15 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xnetworkings.net.aws.crossplane.jonashackt.io
+  name: xawsnetworkings.net.aws.crossplane.lazaroff.pro
 spec:
-  group: net.aws.crossplane.jonashackt.io
+  group: net.aws.crossplane.lazaroff.pro
   names:
-    kind: XNetworking
-    plural: xnetworkings
+    kind: XAwsNetworking
+    plural: xawsnetworkings
   claimNames:
-    kind: Networking
-    plural: networkings
+    kind: AWSNetworking
+    plural: awsnetworkings
   versions:
     - name: v1alpha1
       served: true
@@ -31,10 +31,18 @@ spec:
                   properties:
                     region:
                       type: string
+                    vpcCidrBlock:
+                      type: string
                     subnets:
                       type: object
-                      description: VPC Subnets tags configuration parameters.
+                      description: VPC Subnets tags and CIDRs Blocks configuration parameters.
                       properties:
+                        cidrBlock-1a:
+                          type: string
+                        cidrBlock-1b:
+                          type: string
+                        cidrBlock-1c:
+                          type: string
                         tags:
                           type: object
                           additionalProperties:

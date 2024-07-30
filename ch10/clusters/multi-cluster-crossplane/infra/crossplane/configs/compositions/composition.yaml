@@ -4,25 +4,32 @@ metadata:
   name: kubernetes-cluster
 spec:
   compositeTypeRef:
-    apiVersion: k8s.crossplane.jonashackt.io/v1alpha1
-    kind: XKubernetesCluster
+    apiVersion: k8s.crossplane.lazaroff.pro/v1alpha1
+    kind: XAmazonEKS
   
   writeConnectionSecretsToNamespace: crossplane-system
 
   resources:
-    ### Nested use of XNetworking XR
+    ### Nested use of XAwsNetworking XR
     - name: compositeNetworkEKS
       base:
-        apiVersion: net.aws.crossplane.jonashackt.io/v1alpha1
-        kind: XNetworking
+        apiVersion: net.aws.crossplane.lazaroff.pro/v1alpha1
+        kind: XAwsNetworking
       patches:
         - fromFieldPath: spec.id
           toFieldPath: spec.id
         - fromFieldPath: spec.parameters.region
           toFieldPath: spec.parameters.region
+        - fromFieldPath: spec.parameters.vpcCidrBlock
+          toFieldPath: spec.parameters.vpcCidrBlock
         - fromFieldPath: spec.parameters.subnets.tags
           toFieldPath: spec.parameters.subnets.tags
-        # provide the subnetIds & securityGroupClusterIds for later use
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-1a
+          toFieldPath: spec.parameters.subnets.tcidrBlock-1a
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-1b
+          toFieldPath: spec.parameters.subnets.tcidrBlock-1b
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-1c
+          toFieldPath: spec.parameters.subnets.tcidrBlock-1c
         - type: ToCompositeFieldPath
           fromFieldPath: status.subnetIds
           toFieldPath: status.subnetIds
@@ -34,11 +41,11 @@ spec:
           policy:
             fromFieldPath: Required
     
-    ### Nested use of XEKSCluster XR
+    ### Nested use of XAwsEks XR
     - name: compositeClusterEKS
       base:
-        apiVersion: eks.aws.crossplane.jonashackt.io/v1alpha1
-        kind: XEKSCluster
+        apiVersion: eks.aws.crossplane.lazaroff.pro/v1alpha1
+        kind: XAwsEks
       connectionDetails:
         - fromConnectionSecretKey: kubeconfig
       patches:
@@ -48,6 +55,14 @@ spec:
           toFieldPath: spec.version
         - fromFieldPath: spec.parameters.nodes.tags
           toFieldPath: spec.parameters.nodes.tags
+        - fromFieldPath: spec.parameters.nodes.amiType
+          toFieldPath: spec.parameters.nodes.amiType
+        - fromFieldPath: spec.parameters.nodes.capacityType
+          toFieldPath: spec.parameters.nodes.capacityType
+        - fromFieldPath: spec.parameters.nodes.instanceTypes
+          toFieldPath: spec.parameters.nodes.instanceTypes
+        - fromFieldPath: spec.parameters.nodes.diskSize
+          toFieldPath: spec.parameters.nodes.diskSize
         - fromFieldPath: spec.id
           toFieldPath: metadata.annotations[crossplane.io/external-name]
         - fromFieldPath: metadata.uid
