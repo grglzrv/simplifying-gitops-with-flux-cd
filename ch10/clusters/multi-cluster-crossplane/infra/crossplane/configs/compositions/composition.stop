@@ -53,6 +53,8 @@ spec:
           toFieldPath: spec.clusterName
         - fromFieldPath: spec.version
           toFieldPath: spec.version
+        - fromFieldPath: spec.parameters.nodeGroup.name
+          toFieldPath: spec.parameters.nodeGroup.name
         - fromFieldPath: spec.parameters.nodeGroup.tags
           toFieldPath: spec.parameters.nodeGroup.tags
         - fromFieldPath: spec.parameters.nodeGroup.amiType
