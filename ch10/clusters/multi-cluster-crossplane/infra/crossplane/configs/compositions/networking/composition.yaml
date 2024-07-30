@@ -1,7 +1,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: networking
+  name: aws-networking
   labels:
     provider: aws
 spec:
