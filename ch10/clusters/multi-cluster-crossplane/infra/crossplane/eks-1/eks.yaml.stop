@@ -5,24 +5,27 @@ metadata:
   namespace: default
   name: crossplane-eks-1
 spec:
-  id: crossplane-eks-1
+  clusterName: crossplane-eks-1
   version: "1.30"
   parameters:
     region: eu-central-1
-    vpcCidrBlock: "10.50.0.0/16"
-    nodes:
+    nodeGroup:
+      name: crossplane-eks-1
       amiType: "AL2_ARM_64"
       capacityType: "SPOT"
       instanceTypes: small
       diskSize: 250
-      count: 2
+      nodesMinSize: 1
+      nodesDesiredSize: 2
+      nodesMaxSize: 6
       tags:
        kubernetes.io/cluster/crossplane-eks-1: shared
        Name: crossplane-eks-1
+    vpcCidrBlock: "10.50.0.0/16"
     subnets:
-      cidrBlock-1a: "10.50.0.0/24"
-      cidrBlock-1b: "10.50.1.0/24"
-      cidrBlock-1c: "10.50.2.0/24"
+      cidrBlock-az-a: "10.50.0.0/24"
+      cidrBlock-az-b: "10.50.1.0/24"
+      cidrBlock-az-c: "10.50.2.0/24"
       tags:
         kubernetes.io/cluster/crossplane-eks-1: owned
         kubernetes.io/role/elb: "1"

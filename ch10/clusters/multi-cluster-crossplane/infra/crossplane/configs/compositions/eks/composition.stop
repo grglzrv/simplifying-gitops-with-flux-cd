@@ -41,7 +41,7 @@ spec:
       patches:
         - type: PatchSet
           patchSetName: clusterconfig
-        - fromFieldPath: spec.id
+        - fromFieldPath: specclusterName
           toFieldPath: metadata.name
         - fromFieldPath: spec.version
           toFieldPath: spec.forProvider.version
@@ -72,7 +72,7 @@ spec:
           patchSetName: clusterconfig
         - fromFieldPath: spec.writeConnectionSecretToRef.namespace
           toFieldPath: spec.writeConnectionSecretToRef.namespace
-        - fromFieldPath: spec.id
+        - fromFieldPath: specclusterName
           toFieldPath: spec.writeConnectionSecretToRef.name
           transforms:
             - type: string
@@ -109,7 +109,7 @@ spec:
                 ]
               }
       patches:
-      - fromFieldPath: spec.id
+      - fromFieldPath: specclusterName
         toFieldPath: metadata.name
         transforms:
           - type: string
@@ -135,6 +135,8 @@ spec:
       base:
         apiVersion: eks.aws.upbound.io/v1beta1
         kind: NodeGroup
+        metadata:
+          name: crossplane-eks
         spec:
           forProvider:
             amiType: AL2_ARM_64
@@ -161,17 +163,23 @@ spec:
       patches:
         - type: PatchSet
           patchSetName: clusterconfig
-        - fromFieldPath: spec.parameters.nodes.count
+        - fromFieldPath: spec.parameters.nodeGroup.nodesMinSize
+          toFieldPath: spec.forProvider.scalingConfig[0].minSize
+        - fromFieldPath: spec.parameters.nodeGroup.nodesDesiredSize
           toFieldPath: spec.forProvider.scalingConfig[0].desiredSize
+        - fromFieldPath: spec.parameters.nodeGroup.nodesMaxSize
+          toFieldPath: spec.forProvider.scalingConfig[0].maxSize
+        - fromFieldPath: spec.parameters.nodeGroup.name
+          toFieldPath: metadata.name
         - fromFieldPath: spec.version
           toFieldPath: spec.forProvider.version
-        - fromFieldPath: spec.parameters.nodes.tags
+        - fromFieldPath: spec.parameters.nodeGroup.tags
           toFieldPath: spec.forProvider.tags
-        - fromFieldPath: spec.parameters.nodes.amiType
+        - fromFieldPath: spec.parameters.nodeGroup.amiType
           toFieldPath: spec.forProvider.amiType
-        - fromFieldPath: spec.parameters.nodes.capacityType
+        - fromFieldPath: spec.parameters.nodeGroup.capacityType
           toFieldPath: spec.forProvider.capacityType
-        - fromFieldPath: spec.parameters.nodes.instanceTypes
+        - fromFieldPath: spec.parameters.nodeGroup.instanceTypes
           toFieldPath: spec.forProvider.instanceTypes[0]
           transforms:
             - type: map
@@ -179,9 +187,9 @@ spec:
                 small: t4g.small
                 medium: t4g.medium
                 large: t4g.large
-        - fromFieldPath: spec.parameters.nodes.diskSize
+        - fromFieldPath: spec.parameters.nodeGroup.diskSize
           toFieldPath: spec.forProvider.diskSize
-        - fromFieldPath: spec.id
+        - fromFieldPath: specclusterName
           toFieldPath: spec.forProvider.subnetIdSelector.matchLabels[net.aws.crossplane.lazaroff.pro/network-id]
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.status
@@ -218,7 +226,7 @@ spec:
                   ]
               }
       patches:
-      - fromFieldPath: spec.id
+      - fromFieldPath: specclusterName
         toFieldPath: metadata.name
         transforms:
           - type: string

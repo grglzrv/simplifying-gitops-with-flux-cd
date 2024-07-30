@@ -16,20 +16,20 @@ spec:
         apiVersion: net.aws.crossplane.lazaroff.pro/v1alpha1
         kind: XAwsNetworking
       patches:
-        - fromFieldPath: spec.id
-          toFieldPath: spec.id
+        - fromFieldPath: spec.clusterName
+          toFieldPath: spec.clusterName
         - fromFieldPath: spec.parameters.region
           toFieldPath: spec.parameters.region
         - fromFieldPath: spec.parameters.vpcCidrBlock
           toFieldPath: spec.parameters.vpcCidrBlock
         - fromFieldPath: spec.parameters.subnets.tags
           toFieldPath: spec.parameters.subnets.tags
-        - fromFieldPath: spec.parameters.subnets.cidrBlock-1a
-          toFieldPath: spec.parameters.subnets.tcidrBlock-1a
-        - fromFieldPath: spec.parameters.subnets.cidrBlock-1b
-          toFieldPath: spec.parameters.subnets.tcidrBlock-1b
-        - fromFieldPath: spec.parameters.subnets.cidrBlock-1c
-          toFieldPath: spec.parameters.subnets.tcidrBlock-1c
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-az-a
+          toFieldPath: spec.parameters.subnets.tcidrBlock-az-a
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-az-b
+          toFieldPath: spec.parameters.subnets.tcidrBlock-az-b
+        - fromFieldPath: spec.parameters.subnets.cidrBlock-az-c
+          toFieldPath: spec.parameters.subnets.tcidrBlock-az-c
         - type: ToCompositeFieldPath
           fromFieldPath: status.subnetIds
           toFieldPath: status.subnetIds
@@ -49,21 +49,21 @@ spec:
       connectionDetails:
         - fromConnectionSecretKey: kubeconfig
       patches:
-        - fromFieldPath: spec.id
-          toFieldPath: spec.id
+        - fromFieldPath: spec.clusterName
+          toFieldPath: spec.clusterName
         - fromFieldPath: spec.version
           toFieldPath: spec.version
-        - fromFieldPath: spec.parameters.nodes.tags
-          toFieldPath: spec.parameters.nodes.tags
-        - fromFieldPath: spec.parameters.nodes.amiType
-          toFieldPath: spec.parameters.nodes.amiType
-        - fromFieldPath: spec.parameters.nodes.capacityType
-          toFieldPath: spec.parameters.nodes.capacityType
-        - fromFieldPath: spec.parameters.nodes.instanceTypes
-          toFieldPath: spec.parameters.nodes.instanceTypes
-        - fromFieldPath: spec.parameters.nodes.diskSize
-          toFieldPath: spec.parameters.nodes.diskSize
-        - fromFieldPath: spec.id
+        - fromFieldPath: spec.parameters.nodeGroup.tags
+          toFieldPath: spec.parameters.nodeGroup.tags
+        - fromFieldPath: spec.parameters.nodeGroup.amiType
+          toFieldPath: spec.parameters.nodeGroup.amiType
+        - fromFieldPath: spec.parameters.nodeGroup.capacityType
+          toFieldPath: spec.parameters.nodeGroup.capacityType
+        - fromFieldPath: spec.parameters.nodeGroup.instanceTypes
+          toFieldPath: spec.parameters.nodeGroup.instanceTypes
+        - fromFieldPath: spec.parameters.nodeGroup.diskSize
+          toFieldPath: spec.parameters.nodeGroup.diskSize
+        - fromFieldPath: spec.clusterName
           toFieldPath: metadata.annotations[crossplane.io/external-name]
         - fromFieldPath: metadata.uid
           toFieldPath: spec.writeConnectionSecretToRef.name
@@ -75,8 +75,12 @@ spec:
           toFieldPath: spec.writeConnectionSecretToRef.namespace
         - fromFieldPath: spec.parameters.region
           toFieldPath: spec.parameters.region
-        - fromFieldPath: spec.parameters.nodes.count
-          toFieldPath: spec.parameters.nodes.count
+        - fromFieldPath: spec.parameters.nodeGroup.nodesMinSize
+          toFieldPath: spec.parameters.nodeGroup.nodesMinSize
+        - fromFieldPath: spec.parameters.nodeGroup.nodesDesiredSize
+          toFieldPath: spec.parameters.nodeGroup.nodesDesiredSize
+        - fromFieldPath: spec.parameters.nodeGroup.nodesMaxSize
+          toFieldPath: spec.parameters.nodeGroup.nodesMaxSize
         - fromFieldPath: status.subnetIds
           toFieldPath: spec.parameters.subnetIds
           policy:

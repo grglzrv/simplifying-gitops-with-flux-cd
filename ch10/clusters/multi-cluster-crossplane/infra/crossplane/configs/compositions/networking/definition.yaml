@@ -21,7 +21,7 @@ spec:
             spec:
               type: object
               properties:
-                id:
+                clusterName:
                   type: string
                   description: ID of this Network that other objects will use to refer to it.
                 parameters:
@@ -36,11 +36,11 @@ spec:
                       type: object
                       description: VPC Subnets tags and CIDRs Blocks configuration parameters.
                       properties:
-                        cidrBlock-1a:
+                        cidrBlock-az-a:
                           type: string
-                        cidrBlock-1b:
+                        cidrBlock-az-b:
                           type: string
-                        cidrBlock-1c:
+                        cidrBlock-az-c:
                           type: string
                         tags:
                           type: object
@@ -52,7 +52,7 @@ spec:
                   required:
                     - region
               required:
-                - id
+                - clusterName
                 - parameters
             status:
               type: object

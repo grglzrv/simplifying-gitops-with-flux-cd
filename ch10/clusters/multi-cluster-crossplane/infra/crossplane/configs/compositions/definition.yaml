@@ -37,7 +37,7 @@ spec:
                     type: string
                   vpcCidrBlock:
                     type: string
-                  nodes:
+                  nodeGroup:
                     type: object
                     description: Cluster node configuration parameters.
                     properties:
@@ -48,31 +48,37 @@ spec:
                         description: Type of capacity associated with the EKS Node Group Valid values - ON_DEMAND and SPOT
                         type: string
                       instanceTypes:
-                        description: The size of the nodes; small, medium, large
+                        description: The size of the nodeGroup; small, medium, large
                         type: string
                       diskSize:
                         type: integer
-                        description: Disk size in GiB for worker nodes. Defaults to 50 for Windows, 20 all other node groups.
-                      count:
+                        description: Disk size in GiB for worker nodeGroup. Defaults to 50 for Windows, 20 all other node groups.
+                      nodesMinSize:
+                        type: integer
+                        description: Min node count, from 1 to 10.
+                      nodesDesiredSize:
                         type: integer
                         description: Desired node count, from 1 to 100.
+                      nodesMaxSize:
+                        type: integer
+                        description: max node count, from 1 to 100.
                       tags:
                         type: object
                         additionalProperties:
                           type: string
                         description: Tags to apply to the NodeGroup.
                     required:
-                    - count
+                    - nodesDesiredSize
                     - tags
                   subnets:
                     type: object
                     description: VPC Subnets tags and CIDRs Blocks configuration parameters.
                     properties:
-                      cidrBlock-1a:
+                      cidrBlock-az-a:
                         type: string
-                      cidrBlock-1b:
+                      cidrBlock-az-b:
                         type: string
-                      cidrBlock-1c:
+                      cidrBlock-az-c:
                         type: string
                       tags:
                         type: object
@@ -83,7 +89,7 @@ spec:
                     - tags
                 required:
                 - region
-                - nodes
+                - nodeGroup
             required:
             - id
             - parameters
