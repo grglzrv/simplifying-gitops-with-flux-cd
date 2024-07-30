@@ -18,7 +18,6 @@ spec:
         openAPIV3Schema:
           type: object
           properties:
-            # defining input parameters
             spec:
               type: object
               properties:
@@ -55,7 +54,6 @@ spec:
               required:
                 - id
                 - parameters
-            # defining return values
             status:
               type: object
               properties:
