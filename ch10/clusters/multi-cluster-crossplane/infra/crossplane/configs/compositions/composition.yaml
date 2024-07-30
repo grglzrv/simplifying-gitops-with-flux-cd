@@ -1,7 +1,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: kubernetes-cluster
+  name: amazon-eks
 spec:
   compositeTypeRef:
     apiVersion: k8s.crossplane.lazaroff.pro/v1alpha1
