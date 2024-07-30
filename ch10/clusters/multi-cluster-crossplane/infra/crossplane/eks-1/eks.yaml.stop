@@ -10,7 +10,7 @@ spec:
   parameters:
     region: eu-central-1
     nodeGroup:
-      name: crossplane-eks-1
+      name: default-node-group
       amiType: "AL2_ARM_64"
       capacityType: "SPOT"
       instanceTypes: small
