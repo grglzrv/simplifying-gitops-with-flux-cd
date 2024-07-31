@@ -25,14 +25,24 @@ spec:
           path: "./ch10/clusters/eks2"
           prune: false
     set:
-      - name: secret.data
+      - name: secret.data.identity
         valueFrom:
           secretKeyRef:
             name: flux-system
             namespace: flux-system
-            key: 
-            - identity
-            - identity.pub
-            - known_hosts
+            key: identity
+      - name: secret.data.identity.pub
+        valueFrom:
+          secretKeyRef:
+            name: flux-system
+            namespace: flux-system
+            key: identity.pub
+      - name: secret.data.known_hosts
+        valueFrom:
+          secretKeyRef:
+            name: flux-system
+            namespace: flux-system
+            key: known_hosts
+            
   providerConfigRef: 
     name: helm-provider-eks-2
