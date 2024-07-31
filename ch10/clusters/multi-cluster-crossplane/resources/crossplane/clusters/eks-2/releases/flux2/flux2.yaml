@@ -1,7 +1,7 @@
 apiVersion: helm.crossplane.io/v1beta1
 kind: Release
 metadata:
-  name: flux2-eks-2
+  name: flux2
 spec:
   rollbackLimit: 3
   forProvider:
