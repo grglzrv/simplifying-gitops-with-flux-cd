@@ -41,7 +41,7 @@ spec:
       patches:
         - type: PatchSet
           patchSetName: clusterconfig
-        - fromFieldPath: specclusterName
+        - fromFieldPath: spec.clusterName
           toFieldPath: metadata.name
         - fromFieldPath: spec.version
           toFieldPath: spec.forProvider.version
@@ -72,7 +72,7 @@ spec:
           patchSetName: clusterconfig
         - fromFieldPath: spec.writeConnectionSecretToRef.namespace
           toFieldPath: spec.writeConnectionSecretToRef.namespace
-        - fromFieldPath: specclusterName
+        - fromFieldPath: spec.clusterName
           toFieldPath: spec.writeConnectionSecretToRef.name
           transforms:
             - type: string
@@ -109,7 +109,7 @@ spec:
                 ]
               }
       patches:
-      - fromFieldPath: specclusterName
+      - fromFieldPath: spec.clusterName
         toFieldPath: metadata.name
         transforms:
           - type: string
@@ -189,7 +189,7 @@ spec:
                 large: t4g.large
         - fromFieldPath: spec.parameters.nodeGroup.diskSize
           toFieldPath: spec.forProvider.diskSize
-        - fromFieldPath: specclusterName
+        - fromFieldPath: spec.clusterName
           toFieldPath: spec.forProvider.subnetIdSelector.matchLabels[net.aws.crossplane.lazaroff.pro/network-id]
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.status
@@ -226,7 +226,7 @@ spec:
                   ]
               }
       patches:
-      - fromFieldPath: specclusterName
+      - fromFieldPath: spec.clusterName
         toFieldPath: metadata.name
         transforms:
           - type: string
