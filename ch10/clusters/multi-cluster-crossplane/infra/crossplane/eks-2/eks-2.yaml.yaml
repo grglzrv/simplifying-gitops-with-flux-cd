@@ -10,7 +10,7 @@ spec:
   parameters:
     region: eu-central-1
     nodeGroup:
-      name: default-node-group
+      name: default-node-group-2
       amiType: "AL2_ARM_64"
       capacityType: "SPOT"
       instanceTypes: small
