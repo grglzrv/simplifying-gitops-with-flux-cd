@@ -2,10 +2,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: ks-crossplane-hr
+  name: ks-eks-2-release-flux2-sync
   namespace: flux-system
 spec:
-  path: ./ch10/clusters/multi-cluster-crossplane/infra/crossplane/app
+  dependsOn:
+    - name: ks-eks-2-release-flux2
+  path: ./ch10/clusters/multi-cluster-crossplane/resources/crossplane/clusters/eks-2/releases/flux2-sync
   prune: false
   sourceRef:
     kind: GitRepository

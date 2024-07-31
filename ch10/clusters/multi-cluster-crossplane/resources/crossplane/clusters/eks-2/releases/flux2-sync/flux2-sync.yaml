@@ -16,7 +16,7 @@ spec:
         data:
           identity: |
 
-          # identity.pub: |
+          identity.pub: |
 
           known_hosts: |
 
@@ -32,6 +32,20 @@ spec:
           interval: 1m
           path: "./ch10/clusters/eks2"
           prune: false
+
+      kustomizationlist:
+        - spec:
+            interval: 1m
+            path: ./ch10/clusters/eks2/repos
+            prune: false
+            timeout: 5m
+        - spec:
+            dependsOn:
+            - path: ./ch10/clusters/eks2/repos
+            interval: 1m
+            path: ./ch10/clusters/eks2/apps
+            prune: false
+            timeout: 5m
 
     set:
       - name: secret.data.identity
