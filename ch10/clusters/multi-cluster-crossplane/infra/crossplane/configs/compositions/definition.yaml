@@ -94,7 +94,7 @@ spec:
                 - region
                 - nodeGroup
             required:
-            - id
+            - clusterName
             - parameters
           status:
             type: object
