@@ -23,9 +23,9 @@ spec:
        Name: crossplane-eks-1
     vpc:
       cidrBlock: "10.50.0.0/16"
-        tags:
-          Owner: DevOps Team A
-          Name: devops-team-a-crossplane-vpc
+      tags:
+        Owner: DevOps Team A
+        Name: devops-team-a-crossplane-vpc
     subnets:
       cidrBlock-az-a: "10.50.0.0/24"
       cidrBlock-az-b: "10.50.1.0/24"
