@@ -27,11 +27,11 @@ spec:
         - fromFieldPath: spec.parameters.subnets.tags
           toFieldPath: spec.parameters.subnets.tags
         - fromFieldPath: spec.parameters.subnets.cidrBlock-az-a
-          toFieldPath: spec.parameters.subnets.tcidrBlock-az-a
+          toFieldPath: spec.parameters.subnets.cidrBlock-az-a
         - fromFieldPath: spec.parameters.subnets.cidrBlock-az-b
-          toFieldPath: spec.parameters.subnets.tcidrBlock-az-b
+          toFieldPath: spec.parameters.subnets.cidrBlock-az-b
         - fromFieldPath: spec.parameters.subnets.cidrBlock-az-c
-          toFieldPath: spec.parameters.subnets.tcidrBlock-az-c
+          toFieldPath: spec.parameters.subnets.cidrBlock-az-c
         - type: ToCompositeFieldPath
           fromFieldPath: status.subnetIds
           toFieldPath: status.subnetIds
