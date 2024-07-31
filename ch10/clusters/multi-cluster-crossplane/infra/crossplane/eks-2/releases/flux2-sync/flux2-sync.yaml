@@ -14,9 +14,11 @@ spec:
       secret:
         create: true
         data:
-          identity:
-          identity.pub:
-          known_hosts:
+          identity: |
+
+          identity.pub: |
+
+          known_hosts: |
 
       gitRepository:
         spec:
@@ -24,7 +26,7 @@ spec:
           interval: 1m
           ref:
             branch: main
-            
+
       kustomization:
         spec:
           interval: 1m
