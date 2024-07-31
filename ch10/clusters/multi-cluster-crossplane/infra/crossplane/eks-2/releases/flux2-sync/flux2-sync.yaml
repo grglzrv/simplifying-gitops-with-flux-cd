@@ -13,17 +13,24 @@ spec:
     values:
       secret:
         create: true
+        data:
+          identity:
+          identity.pub:
+          known_hosts:
+
       gitRepository:
         spec:
           url: "ssh://git@github.com/grglzrv/simplifying-gitops-with-flux-cd"
           interval: 1m
           ref:
             branch: main
+            
       kustomization:
         spec:
           interval: 1m
           path: "./ch10/clusters/eks2"
           prune: false
+
     set:
       - name: secret.data.identity
         valueFrom:
@@ -31,18 +38,20 @@ spec:
             name: flux-system
             namespace: flux-system
             key: identity
+
       - name: secret.data.identity.pub
         valueFrom:
           secretKeyRef:
             name: flux-system
             namespace: flux-system
             key: identity.pub
+
       - name: secret.data.known_hosts
         valueFrom:
           secretKeyRef:
             name: flux-system
             namespace: flux-system
             key: known_hosts
-            
+
   providerConfigRef: 
     name: helm-provider-eks-2
