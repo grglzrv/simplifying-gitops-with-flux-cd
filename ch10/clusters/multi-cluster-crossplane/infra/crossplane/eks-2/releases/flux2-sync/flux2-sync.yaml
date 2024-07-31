@@ -41,12 +41,12 @@ spec:
             namespace: flux-system
             key: identity
 
-      # - name: secret.data.identity.pub
-      #   valueFrom:
-      #     secretKeyRef:
-      #       name: flux-system
-      #       namespace: flux-system
-      #       key: identity.pub
+      - name: secret.data.identity\.pub
+        valueFrom:
+          secretKeyRef:
+            name: flux-system
+            namespace: flux-system
+            key: identity.pub
 
       - name: secret.data.known_hosts
         valueFrom:
