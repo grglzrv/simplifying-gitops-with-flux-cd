@@ -23,7 +23,7 @@ spec:
 
   resources:
     ### VPC and InternetGateway
-    - name: devops-vcp
+    - name: devops-vpc
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1
         kind: VPC
