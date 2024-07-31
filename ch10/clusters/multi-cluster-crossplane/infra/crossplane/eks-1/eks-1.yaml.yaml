@@ -24,14 +24,14 @@ spec:
     vpc:
       cidrBlock: "10.50.0.0/16"
       tags:
-        Owner: DevOps Team A
-        Name: devops-team-a-crossplane-vpc
+        Owner: "DevOps Team A"
+        Name: "devops-team-a-crossplane-vpc"
     subnets:
       cidrBlock-az-a: "10.50.0.0/24"
       cidrBlock-az-b: "10.50.1.0/24"
       cidrBlock-az-c: "10.50.2.0/24"
       tags:
-        kubernetes.io/cluster/crossplane-eks-1: owned
+        kubernetes.io/cluster/crossplane-eks-1: "owned"
         kubernetes.io/role/elb: "1"
   writeConnectionSecretToRef:
     name: eks-cluster-kubeconfig
