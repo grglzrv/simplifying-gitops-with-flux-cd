@@ -10,7 +10,7 @@ spec:
   parameters:
     region: eu-central-1
     nodeGroup:
-      name: default-node-group-2
+      name: default-node-group-eks-2
       amiType: "AL2_ARM_64"
       capacityType: "SPOT"
       instanceTypes: small
@@ -34,4 +34,4 @@ spec:
         kubernetes.io/cluster/crossplane-eks-2: "owned"
         kubernetes.io/role/elb: "1"
   writeConnectionSecretToRef:
-    name: eks-cluster-kubeconfig-2
+    name: eks-2-cluster-kubeconfig
