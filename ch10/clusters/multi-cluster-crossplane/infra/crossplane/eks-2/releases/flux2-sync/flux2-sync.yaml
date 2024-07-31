@@ -16,9 +16,9 @@ spec:
         data:
           identity: |
 
-          identity.pub: |
+          # identity.pub: |
 
-          known_hosts: |
+          # known_hosts: |
 
       gitRepository:
         spec:
@@ -41,19 +41,19 @@ spec:
             namespace: flux-system
             key: identity
 
-      - name: secret.data.identity.pub
-        valueFrom:
-          secretKeyRef:
-            name: flux-system
-            namespace: flux-system
-            key: identity.pub
+      # - name: secret.data.identity.pub
+      #   valueFrom:
+      #     secretKeyRef:
+      #       name: flux-system
+      #       namespace: flux-system
+      #       key: identity.pub
 
-      - name: secret.data.known_hosts
-        valueFrom:
-          secretKeyRef:
-            name: flux-system
-            namespace: flux-system
-            key: known_hosts
+      # - name: secret.data.known_hosts
+      #   valueFrom:
+      #     secretKeyRef:
+      #       name: flux-system
+      #       namespace: flux-system
+      #       key: known_hosts
 
   providerConfigRef: 
     name: helm-provider-eks-2
