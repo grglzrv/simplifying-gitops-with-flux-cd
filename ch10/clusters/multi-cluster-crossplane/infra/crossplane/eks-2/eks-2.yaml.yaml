@@ -21,7 +21,11 @@ spec:
       tags:
        kubernetes.io/cluster/crossplane-eks-2: shared
        Name: crossplane-eks-2
-    vpcCidrBlock: "10.70.0.0/16"
+    vpc:
+      cidrBlock: "10.70.0.0/16"
+        tags:
+          Owner: DevOps Team B
+          Name: devops-team-b-crossplane-vpc
     subnets:
       cidrBlock-az-a: "10.70.0.0/24"
       cidrBlock-az-b: "10.70.1.0/24"

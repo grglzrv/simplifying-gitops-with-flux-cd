@@ -20,8 +20,10 @@ spec:
           toFieldPath: spec.clusterName
         - fromFieldPath: spec.parameters.region
           toFieldPath: spec.parameters.region
-        - fromFieldPath: spec.parameters.vpcCidrBlock
-          toFieldPath: spec.parameters.vpcCidrBlock
+        - fromFieldPath: spec.parameters.vpc.cidrBlock
+          toFieldPath: spec.parameters.vpc.cidrBlock
+        - fromFieldPath: spec.parameters.vpc.tags
+          toFieldPath: spec.parameters.vpc.tags
         - fromFieldPath: spec.parameters.subnets.tags
           toFieldPath: spec.parameters.subnets.tags
         - fromFieldPath: spec.parameters.subnets.cidrBlock-az-a

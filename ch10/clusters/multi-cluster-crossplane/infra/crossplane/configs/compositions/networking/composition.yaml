@@ -33,16 +33,18 @@ spec:
             enableDnsSupport: true
             enableDnsHostnames: true
             tags:
-              Owner: DevOps Team
-              Name: devops-crossplane-vpc
+              Owner: DevOps Team 1
+              Name: devops-1-crossplane-vpc
       patches:
         - type: PatchSet
           patchSetName: networkconfig
         - fromFieldPath: spec.clusterName
           toFieldPath: metadata.name
-        - fromFieldPath: spec.parameters.vpcCidrBlock
+        - fromFieldPath: spec.parameters.vpc.cidrBlock
           toFieldPath: spec.forProvider.cidrBlock
-    
+         - fromFieldPath: spec.parameters.vpc.tags
+          toFieldPath: spec.forProvider.tags
+
     - name: gateway
       base:
         apiVersion: ec2.aws.upbound.io/v1beta1

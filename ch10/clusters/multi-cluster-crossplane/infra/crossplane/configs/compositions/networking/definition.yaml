@@ -30,17 +30,33 @@ spec:
                   properties:
                     region:
                       type: string
-                    vpcCidrBlock:
-                      type: string
+                    vpc:
+                      type: object
+                      description: VPC configuration parameters.
+                      properties:
+                        cidrBlock:
+                          description: VPC CIDR Block - example 10.0.0.0/16
+                          type: string
+                        tags:
+                          type: object
+                          additionalProperties:
+                            type: string
+                          description: Tags to apply to the VPC.
+                      required:
+                      - cidrBlock
+                      - tags
                     subnets:
                       type: object
-                      description: VPC Subnets tags and CIDRs Blocks configuration parameters.
+                      description: Subnets tags and CIDRs Blocks configuration parameters.
                       properties:
                         cidrBlock-az-a:
+                          description: Route CIDR Block - example 10.0.1.0/24
                           type: string
                         cidrBlock-az-b:
+                          description: Route CIDR Block - example 10.0.2.0/24
                           type: string
                         cidrBlock-az-c:
+                          description: Route CIDR Block - example 10.0.3.0/24
                           type: string
                         tags:
                           type: object
@@ -48,6 +64,9 @@ spec:
                             type: string
                           description: Tags to apply to the Subnets.
                       required:
+                      - cidrBlock-az-a
+                      - cidrBlock-az-b
+                      - cidrBlock-az-c
                       - tags
                   required:
                     - region
