@@ -6,6 +6,6 @@ spec:
   credentials:
     secretRef:
       key: kubeconfig
-      name: eks-2-cluster-kubeconfig
-      namespace: default
+      name: crossplane-eks-2-access
+      namespace: crossplane-system
     source: Secret
