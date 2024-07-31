@@ -30,6 +30,9 @@ spec:
           secretKeyRef:
             name: flux-system
             namespace: flux-system
-            key: data
+            key: 
+            - identity
+            - identity.pub
+            - known_hosts
   providerConfigRef: 
     name: helm-provider-eks-2
