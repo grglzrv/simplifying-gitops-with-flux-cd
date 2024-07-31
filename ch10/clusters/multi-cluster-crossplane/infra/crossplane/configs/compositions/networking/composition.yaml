@@ -42,7 +42,7 @@ spec:
           toFieldPath: metadata.name
         - fromFieldPath: spec.parameters.vpc.cidrBlock
           toFieldPath: spec.forProvider.cidrBlock
-         - fromFieldPath: spec.parameters.vpc.tags
+        - fromFieldPath: spec.parameters.vpc.tags
           toFieldPath: spec.forProvider.tags
 
     - name: gateway
