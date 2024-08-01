@@ -22,7 +22,7 @@ spec:
     spec:
       chart: podinfo
       sourceRef:
-        kind: OCIRepository
+        kind: HelmRepository
         name: podinfo
         namespace: flux-system
       version: ">=6.7.0"
