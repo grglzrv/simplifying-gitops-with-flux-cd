@@ -5,7 +5,7 @@ metadata:
 spec:
   credentials:
     secretRef:
-      key: kubeconfig
-      name: crossplane-eks-2-access
-      namespace: crossplane-system
+      key: value
+      name: eks-2-cluster-kubeconfig
+      namespace: flux-system
     source: Secret

@@ -79,7 +79,7 @@ spec:
               string:
                 fmt: "%s-access"
       connectionDetails:
-        - fromConnectionSecretKey: kubeconfig
+        - fromConnectionSecretKey: value
 
     ### Cluster Role and Policies
     - name: clusterRole
