@@ -5,7 +5,7 @@ kind: Secret
 metadata:
     creationTimestamp: null
     name: aws-creds
-    namespace: crossplane-system
+    namespace: flux-system
 sops:
     kms: []
     gcp_kms: []
