@@ -5,7 +5,7 @@ metadata:
 spec:
   credentials:
     secretRef:
-      key: value
+      key: kubeconfig
       name: eks-2-cluster-kubeconfig
       namespace: flux-system
     source: Secret
