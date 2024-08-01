@@ -3,7 +3,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: ks-jenkins-eks-1
-  namespace: default
+  namespace: crossplane-system
 spec:
   dependsOn:
     - name: ks-crossplane-cluster-1
@@ -16,7 +16,7 @@ spec:
     namespace: flux-system
   kubeConfig:
     secretRef:
-      name: eks-1-cluster-kubeconfig
+      name: crossplane-eks-1-access
   healthChecks:
   - apiVersion: k8s.crossplane.lazaroff.pro/v1alpha1
     kind: AmazonEKS
