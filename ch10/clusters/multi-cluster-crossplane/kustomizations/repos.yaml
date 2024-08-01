@@ -5,6 +5,8 @@ metadata:
   name: ks-repos
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: flux-system
   path: ./ch10/clusters/multi-cluster-crossplane/repos
   prune: false
   sourceRef:
