@@ -11,7 +11,7 @@ spec:
     kind: AmazonEKS
     plural: amazonekss
   connectionSecretKeys:
-  - value
+  - kubeconfig
   versions:
   - name: v1alpha1
     served: true
