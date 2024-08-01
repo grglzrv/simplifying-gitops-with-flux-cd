@@ -7,6 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: ks-crossplane-cluster-1
+      namespace: flux-system
   path: ./ch10/apps
   prune: false
   sourceRef:
