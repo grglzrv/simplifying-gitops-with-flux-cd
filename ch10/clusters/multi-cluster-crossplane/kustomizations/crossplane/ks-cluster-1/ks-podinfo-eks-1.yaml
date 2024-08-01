@@ -15,8 +15,8 @@ spec:
     namespace: flux-system
   kubeConfig:
     secretRef:
-      key: kubeconfig
       name: eks-1-cluster-kubeconfig
+      key: kubeconfig
   healthChecks:
   - apiVersion: k8s.crossplane.lazaroff.pro/v1alpha1
     kind: AmazonEKS
