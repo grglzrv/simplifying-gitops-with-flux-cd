@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: ks-sops
+    - name: ks-apps
   path: ./ch10/clusters/multi-cluster-crossplane/resources/crossplane/aws-provider
   prune: false
   sourceRef:
