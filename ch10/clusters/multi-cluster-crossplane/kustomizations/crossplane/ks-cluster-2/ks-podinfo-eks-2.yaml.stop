@@ -16,6 +16,7 @@ spec:
   kubeConfig:
     secretRef:
       name: eks-2-cluster-kubeconfig
+      key: kubeconfig
   healthChecks:
   - apiVersion: k8s.crossplane.lazaroff.pro/v1alpha1
     kind: AmazonEKS
