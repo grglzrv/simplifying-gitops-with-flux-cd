@@ -2,7 +2,7 @@
 apiVersion: k8s.crossplane.lazaroff.pro/v1alpha1
 kind: AmazonEKS
 metadata:
-  namespace: default
+  namespace: flux-system
   name: crossplane-eks-2
 spec:
   clusterName: crossplane-eks-2
