@@ -204,6 +204,8 @@ spec:
           patchSetName: networkconfig
         - fromFieldPath: spec.clusterName
           toFieldPath: metadata.name
+        - fromFieldPath: spec.parameters.sg.labels
+          toFieldPath: metadata.labels
           # provide the securityGroupId for later use as status.securityGroupClusterIds entry
         - type: ToCompositeFieldPath
           fromFieldPath: metadata.annotations[crossplane.io/external-name]
@@ -228,6 +230,10 @@ spec:
       patches:
         - type: PatchSet
           patchSetName: networkconfig
+        - fromFieldPath: spec.parameters.sg.labels
+          toFieldPath: spec.forProvider.securityGroupIdSelector.matchLabels
+        - fromFieldPath: spec.parameters.sg.ruleNames.inbound
+          toFieldPath: metadata.name
 
     - name: securitygrouprule-cluster-outbound
       base:
@@ -248,6 +254,10 @@ spec:
       patches:
         - type: PatchSet
           patchSetName: networkconfig
+        - fromFieldPath: spec.parameters.sg.labels
+          toFieldPath: spec.forProvider.securityGroupIdSelector.matchLabels
+        - fromFieldPath: spec.parameters.sg.ruleNames.outbound
+          toFieldPath: metadata.name
 
     ### Route, RouteTable & RouteTableAssociations
     - name: route

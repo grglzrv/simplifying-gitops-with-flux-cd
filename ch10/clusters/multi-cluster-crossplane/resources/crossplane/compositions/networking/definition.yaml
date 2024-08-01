@@ -68,6 +68,30 @@ spec:
                       - cidrBlock-az-b
                       - cidrBlock-az-c
                       - tags
+                    sg:
+                      type: object
+                      description: Security Group labels and rule names.
+                      properties:
+                        labels:
+                          type: object
+                          additionalProperties:
+                            type: string
+                          description: Labels to apply to the Security Groups.
+                        ruleNames:
+                          type: object
+                          properties:
+                            inbound:
+                              type: string
+                              description: Name for inbound security group rule
+                            outbound:
+                              type: string
+                              description: Name for outbound security group rule
+                          required:
+                          - inbound
+                          - outbound
+                      required:
+                      - labels
+                      - ruleNames
                   required:
                     - region
               required:

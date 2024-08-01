@@ -32,6 +32,13 @@ spec:
           toFieldPath: spec.parameters.subnets.cidrBlock-az-b
         - fromFieldPath: spec.parameters.subnets.cidrBlock-az-c
           toFieldPath: spec.parameters.subnets.cidrBlock-az-c
+        - fromFieldPath: spec.parameters.sg.labels
+          toFieldPath: spec.parameters.sg.labels
+        - fromFieldPath: spec.parameters.sg.ruleNames.inbound
+          toFieldPath: spec.parameters.sg.ruleNames.inbound
+        - fromFieldPath: spec.parameters.sg.ruleNames.outbound
+          toFieldPath: spec.parameters.sg.ruleNames.outbound
+
         - type: ToCompositeFieldPath
           fromFieldPath: status.subnetIds
           toFieldPath: status.subnetIds
