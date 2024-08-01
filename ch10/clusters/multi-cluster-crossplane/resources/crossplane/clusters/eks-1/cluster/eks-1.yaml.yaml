@@ -33,5 +33,11 @@ spec:
       tags:
         kubernetes.io/cluster/crossplane-eks-1: "owned"
         kubernetes.io/role/elb: "1"
+    sg:
+      labels:
+        net.aws.crossplane.lazaroff.pro: securitygroup-cluster-1
+      ruleNames:
+        inbound: "securitygrouprule-cluster-1-inbound"
+        outbound: "securitygrouprule-cluster-1-outbound"
   writeConnectionSecretToRef:
     name: eks-1-cluster-kubeconfig
