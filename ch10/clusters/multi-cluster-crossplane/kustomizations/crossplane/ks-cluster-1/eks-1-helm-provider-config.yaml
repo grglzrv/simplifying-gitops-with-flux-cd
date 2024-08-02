@@ -16,7 +16,7 @@ spec:
   - apiVersion: k8s.crossplane.lazaroff.pro/v1alpha1
     kind: AmazonEKS
     name: crossplane-eks-1
-    namespace: default
+    namespace: flux-system
   wait: true
   interval: 1m0s
   retryInterval: 1m0s
