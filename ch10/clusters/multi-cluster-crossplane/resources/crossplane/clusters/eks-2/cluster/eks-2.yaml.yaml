@@ -15,8 +15,8 @@ spec:
       capacityType: "SPOT"
       instanceTypes: small
       diskSize: 250
-      nodesMinSize: 1
-      nodesDesiredSize: 2
+      nodesMinSize: 0
+      nodesDesiredSize: 0
       nodesMaxSize: 7
       tags:
        kubernetes.io/cluster/crossplane-eks-2: shared
