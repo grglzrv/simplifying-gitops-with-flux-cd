@@ -4,12 +4,7 @@ buildMetadata: [originAnnotations]
 configMapGenerator:
 - name: aws-auth
   namespace: kube-system
-  literals:
-    - |
-      mapUsers: |
-        - groups:
-            - system:masters
-          userarn: arn:aws:iam::23423423423:user/georgi@example.io
-          username: georgi@example.io
+  files:
+    - mapUsers=mapUsers.yaml
 generatorOptions:
-  disableNameSuffixHash: true
+  disableNameSuffixHash: tru
