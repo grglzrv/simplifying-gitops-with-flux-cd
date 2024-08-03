@@ -1,0 +1,78 @@
+# Local Kubernetes Cluster Setup with K3d and Flux
+
+This guide will walk you through setting up a local Kubernetes cluster with K3d and installing Flux using a Taskfile. The steps include installing K3d, creating a cluster, installing Flux, and configuring it with your GitHub repository.
+
+## Prerequisites
+
+- [Docker](https://www.docker.com/products/docker-desktop) must be installed and running.
+
+## Install Task
+
+### macOS
+
+1. Install Task using Homebrew:
+    ```sh
+    brew install go-task/tap/go-task
+    ```
+
+### Linux
+
+1. Download the Task binary:
+    ```sh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/go-task/task/master/install.sh)"
+    ```
+
+2. Make the binary executable and move it to your PATH:
+    ```sh
+    chmod +x ./bin/task
+    sudo mv ./bin/task /usr/local/bin/
+    ```
+
+## Clone the Repository
+
+1. Clone this repository:
+    ```sh
+    git clone https://github.com/<your-github-username>/Simplifying-GitOps-with-FluxCD
+    cd Simplifying-GitOps-with-FluxCD
+    ```
+
+## Fork the Repository
+
+Before running the setup, you need to fork the repository:
+
+1. Go to [https://github.com/PacktPublishing/Simplifying-GitOps-with-FluxCD](https://github.com/PacktPublishing/Simplifying-GitOps-with-FluxCD) and fork the repository to your GitHub account.
+
+## Run the Setup
+
+1. Run the setup task to create and configure the local Kubernetes cluster:
+    ```sh
+    task setup
+    ```
+
+## Tasks Overview
+
+The `setup` task will perform the following steps:
+
+1. **Install K3d**: Installs K3d for managing the Kubernetes cluster.
+2. **Unset KUBECONFIG**: Unsets any existing KUBECONFIG environment variable.
+3. **Create Cluster**: Creates a new Kubernetes cluster with K3d.
+4. **Verify Cluster**: Verifies that the Kubernetes cluster is running.
+5. **Switch Context**: Switches the context to the new K3d cluster.
+6. **Install Flux Operator**: Installs the Flux operator using Helm.
+7. **Generate SSH Key**: Generates an SSH key for Flux.
+8. **Display Public Key**: Displays the public SSH key for you to add to your GitHub repository.
+9. **Wait for Key Copy**: Waits for you to add the SSH key to your GitHub repository.
+10. **Create Flux Secret**: Creates a Flux secret with the private SSH key.
+11. **Install Age and SOPS**: Installs Age and SOPS for secret management.
+12. **Generate Age Key**: Generates an Age key for encrypting secrets.
+13. **Create SOPS Secret**: Creates a Kubernetes secret for SOPS with the Age key.
+14. **Apply Flux Instance**: Deploys the Flux instance CRD.
+15. **Create AWS Credentials File**: Prompts you to create an AWS credentials file.
+16. **Dry Run Create AWS Creds**: Creates a local AWS credentials YAML file.
+17. **Encrypt AWS Creds**: Encrypts the AWS credentials file using Age.
+18. **Push AWS Creds to Repo**: Prompts you to push the encrypted AWS credentials file to your GitHub repository.
+19. **Print Setup Complete**: Prints a message indicating the setup is complete.
+
+## Author
+
+Georgi Lazarov
