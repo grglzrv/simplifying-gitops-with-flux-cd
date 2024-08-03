@@ -41,3 +41,14 @@ spec:
           - op: add
             path: /spec/template/spec/containers/0/args/-
             value: --requeue-dependency=5s
+      - target:
+          kind: Kustomization
+          name: flux-system
+          namespace: flux-system
+        patch: |
+          - op: add
+            path: /spec/decryption
+            value:
+              provider: sops
+              secretRef:
+                name: sops-age
