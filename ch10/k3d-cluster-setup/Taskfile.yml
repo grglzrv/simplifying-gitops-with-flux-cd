@@ -83,7 +83,7 @@ tasks:
     cmds:
       - age-keygen -o age.agekey
       - echo "Public key:"
-      - grep 'public key' age.agekey | awk '{print $3}'
+      - grep 'public key' age.agekey | awk '{print $4}' > age.pub
     desc: Generate AGE key
 
   create_sops_secret:
@@ -110,7 +110,7 @@ tasks:
 
   encrypt_aws_creds:
     cmds:
-      - sops --age=$(grep 'public key' age.agekey | awk '{print $3}') --encrypt --encrypted-regex '^(data|stringData)$' --in-place aws-creds.yaml
+      - sops --age=$(cat age.pub) --encrypt --encrypted-regex '^(data|stringData)$' --in-place aws-creds.yaml
     desc: Encrypt AWS credentials file with Age key
 
   push_aws_creds_to_repo:
