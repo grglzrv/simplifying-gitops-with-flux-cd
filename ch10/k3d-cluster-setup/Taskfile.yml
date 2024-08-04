@@ -28,8 +28,7 @@ tasks:
 
   create_cluster:
     cmds:
-      - unset KUBECONFIG
-      - k3d cluster create -i rancher/k3s:v1.30.0-rc1-k3s1 -s 3 ch10-crossplane
+      - unset KUBECONFIG; k3d cluster create -i rancher/k3s:v1.30.0-rc1-k3s1 -s 3 ch10-crossplane
     desc: Create Kubernetes cluster with k3d
 
   verify_cluster:
