@@ -21,7 +21,7 @@ spec:
       tags:
        kubernetes.io/cluster/crossplane-eks-1: shared
        Name: crossplane-eks-1
-    mapUsers: |-
+    mapUsers: |
       - groups:
         - system:masters
         userarn: arn:aws:iam::603782460543:user/georgi.lazarov@nexo.io
