@@ -1,6 +1,6 @@
 version: '3'
 
-dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
+dotenv: ['.env']
 
 tasks:
   setup:
@@ -58,7 +58,7 @@ tasks:
 
   generate_ssh_key:
     cmds:
-      - ssh-keygen -t rsa -b 4096 -C "$EMAIL" -f ~/.ssh/id_rsa_fluxcd_ch10 -N ""
+      - ssh-keygen -t rsa -b 4096 -C "{{.EMAIL}}" -f ~/.ssh/id_rsa_fluxcd_ch10 -N ""
     desc: Generate SSH key for Flux
 
   display_public_key:
@@ -76,7 +76,7 @@ tasks:
 
   create_flux_secret:
     cmds:
-      - flux create secret git flux-system --url=ssh://git@github.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD --private-key-file=$HOME/.ssh/id_rsa_fluxcd_ch10
+      - flux create secret git flux-system --url=ssh://git@github.com/{{.GITHUB_USERNAME}}/Simplifying-GitOps-with-FluxCD --private-key-file=$HOME/.ssh/id_rsa_fluxcd_ch10
     desc: Create Flux secret with private SSH key
 
   generate_age_key:
@@ -93,14 +93,14 @@ tasks:
 
   apply_flux_instance:
     cmds:
-      - kubectl apply -f https://raw.githubusercontent.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/infra/flux/flux-instance.yaml
+      - kubectl apply -f https://raw.githubusercontent.com/{{.GITHUB_USERNAME}}/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/infra/flux/flux-instance.yaml
     desc: Deploy FluxInstance CRD
 
   create_aws_credentials_file:
     cmds:
       - echo "[default]" > aws-credentials.txt
-      - echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> aws-credentials.txt
-      - echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> aws-credentials.txt
+      - echo "aws_access_key_id = {{.AWS_ACCESS_KEY_ID}}" >> aws-credentials.txt
+      - echo "aws_secret_access_key = {{.AWS_SECRET_ACCESS_KEY}}" >> aws-credentials.txt
     desc: Create AWS credentials file 
 
   dry_run_create_aws_creds:
