@@ -7,7 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: ks-apps
-  path: ./ch10/clusters/multi-cluster-crossplane/resources/sealed-secret
+  path: ./ch10/clusters/multi-cluster-crossplane/resources/sops
   prune: false
   sourceRef:
     kind: GitRepository

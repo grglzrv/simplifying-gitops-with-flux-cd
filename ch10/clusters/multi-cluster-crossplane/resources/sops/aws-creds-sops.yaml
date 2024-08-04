@@ -1,0 +1,28 @@
+apiVersion: v1
+data:
+    creds: ENC[AES256_GCM,data:dxICmivG2qNn3XEwcuMG6FAK6nmMnfUDXObQ/lm/iFonUUO1RWkPPFLAC2KV1Qgy/GAnyEgq+rWbLd6OQo2QMJmkcoZjuyR4DtfekyrVk17m5quM6L/348KBlfzYtpT+dfCIXePb+JSgfu5xRJVSGSGHtBOrEfgNVsEq9m2OVCXDZ9pv4SQSPkBTZ0iWgege9CLzay9dMewIdI7z,iv:vHOY30FGmeFLUw6kI6jEO9zpSbVKMyi4ZWfK7pkJbRs=,tag:jLh30BwaRvq7JfeFxyfoqQ==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: aws-creds
+    namespace: crossplane-system
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18htu97pkf8jt5zqsw8xkl0xkgelr0p8krs04v8yvjzxslvkyl54q8lfvp7
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWTVpxQXo5NUozSGJYNkpu
+            NU1NUEt6UVFTSVZ4a0g1dlBBZlNBMFRoekJZCjRrYnMrck1icFhYT21yWERrZ3N4
+            WDhWV2tLRS8ySS9FNHJVM2VnNmZ6UmMKLS0tIFRNS2ZqT1NqTG5FNjRkd3pmSU8x
+            RDA3WCtnRWRXdVlvOWxoOVliZWpCdEEKzIB6XQJJX/1TBc+yNiZbcy/S4J9ZVQ8f
+            gstHj/ZTMYeyWpQs2umzGrMn0Ppl3mZS3eo/oiYInC+ZGrgpd2Za5A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-08-04T13:10:49Z"
+    mac: ENC[AES256_GCM,data:VMiMSw4EgkrPFWolsAm5zPbV28d2IQbbzI0Ulsjv/Oeg0kmE4UOOiUt+GfAZf0s89bpVJuihj0PnxygClJe4deAnFCtnSlxEUt+SCAqMzqEw4qIKmjN5+ccRfxuclFBWKKOnJmFtKHgItNaDDW89VQ+Yb5hqXMkHFq+UeaN8l5o=,iv:CqQYUzW5+JRBg1ZaDu0QlhXTW/0Od78XMDa4fZNO7og=,tag:WzbxYwLD8fvDZZ97myIByA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1
