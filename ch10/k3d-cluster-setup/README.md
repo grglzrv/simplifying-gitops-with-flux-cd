@@ -60,22 +60,21 @@ Before running the setup, you need to fork the repository:
 The `setup` task will perform the following steps:
 
 1. **Install K3d**: Installs K3d for managing the Kubernetes cluster.
-2. **Unset KUBECONFIG**: Unsets any existing KUBECONFIG environment variable.
-3. **Create Cluster**: Creates a new Kubernetes cluster with K3d.
-4. **Verify Cluster**: Verifies that the Kubernetes cluster is running.
-5. **Switch Context**: Switches the context to the new K3d cluster.
-6. **Install Flux Operator**: Installs the Flux operator using Helm.
-7. **Generate SSH Key**: Generates an SSH key for Flux.
-8. **Display Public Key**: Displays the public SSH key for you to add to your GitHub repository.
-9. **Wait for Key Copy**: Waits for you to add the SSH key to your GitHub repository.
-10. **Create Flux Secret**: Creates a Flux secret with the private SSH key.
-11. **Generate AGE Key**: Generates an AGE key for encrypting secrets.
-12. **Create SOPS Secret**: Creates a Kubernetes secret for SOPS with the AGE key.
-13. **Apply Flux Instance**: Deploys the Flux instance CRD.
-14. **Create AWS Credentials File**: Prompts you to create an AWS credentials file.
-15. **Dry Run Create AWS Creds**: Creates a local AWS credentials YAML file.
-16. **Encrypt AWS Creds**: Encrypts the AWS credentials file using AGE.
-17. **Push AWS Creds to Repo**: Prompts you to push the encrypted AWS credentials file to your GitHub repository.
+2. **Create Cluster**: Creates a new Kubernetes cluster with K3d.
+3. **Verify Cluster**: Verifies that the Kubernetes cluster is running.
+4. **Switch Context**: Switches the context to the new K3d cluster.
+5. **Install Flux Operator**: Installs the Flux operator using Helm.
+6. **Generate SSH Key**: Generates an SSH key for Flux.
+7. **Display Public Key**: Displays the public SSH key for you to add to your GitHub repository.
+8. **Wait for Key Copy**: Waits for you to add the SSH key to your GitHub repository.
+9. **Create Flux Secret**: Creates a Flux secret with the private SSH key.
+10. **Generate AGE Key**: Generates an AGE key for encrypting secrets.
+11. **Create SOPS Secret**: Creates a Kubernetes secret for SOPS with the AGE key.
+12. **Apply Flux Instance**: Deploys the Flux instance CRD.
+13. **Create AWS Credentials File**: Prompts you to create an AWS credentials file.
+14. **Dry Run Create AWS Creds**: Creates a local AWS credentials YAML file.
+15. **Encrypt AWS Creds**: Encrypts the AWS credentials file using AGE.
+16. **Push AWS Creds to Repo**: Prompts you to push the encrypted AWS credentials file to your GitHub repository.
 19. **Print Setup Complete**: Prints a message indicating the setup is complete.
 
 ## Author
