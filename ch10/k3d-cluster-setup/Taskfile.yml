@@ -93,7 +93,7 @@ tasks:
 
   apply_flux_instance:
     cmds:
-      - kubectl apply -f https://raw.githubusercontent.com/{{.GITHUB_USERNAME}}/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/infra/flux/flux-instance.yaml
+      - kubectl apply -f https://raw.githubusercontent.com/{{.GITHUB_USERNAME}}/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/apps/flux/flux-instance.yaml
     desc: Deploy FluxInstance CRD
 
   create_aws_credentials_file:
