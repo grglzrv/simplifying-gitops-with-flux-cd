@@ -48,6 +48,18 @@ Before running the setup, you need to fork the repository:
 
 1. Go to [https://github.com/PacktPublishing/Simplifying-GitOps-with-FluxCD](https://github.com/PacktPublishing/Simplifying-GitOps-with-FluxCD) and fork the repository to your GitHub account.
 
+2. Clone your GitHub repository and go to `./ch10/k3d-cluster-setup` dir.
+
+## Update the .env File
+
+1. Before running the setup with `task setup`, you need to update the .env file with your details:
+    ```sh
+    GITHUB_USERNAME=your-github-username
+    EMAIL=your-email@example.com
+    AWS_ACCESS_KEY_ID=your-aws-access-key-id
+    AWS_SECRET_ACCESS_KEY=your-aws-secret-access-key
+    ```
+
 ## Run the Setup
 
 1. Run the setup task to create and configure the local Kubernetes cluster:
@@ -79,4 +91,4 @@ The `setup` task will perform the following steps:
 
 ## Author
 
-Georgi Lazarov
+`Georgi Lazarov`

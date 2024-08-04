@@ -1,5 +1,7 @@
 version: '3'
 
+dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
+
 tasks:
   setup:
     cmds:
@@ -56,9 +58,7 @@ tasks:
 
   generate_ssh_key:
     cmds:
-      - echo "Please enter your email address for the SSH key:"
-      - read email
-      - ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/id_rsa_fluxcd_ch10 -N ""
+      - ssh-keygen -t rsa -b 4096 -C "$EMAIL" -f ~/.ssh/id_rsa_fluxcd_ch10 -N ""
     desc: Generate SSH key for Flux
 
   display_public_key:
@@ -69,16 +69,14 @@ tasks:
   wait_for_key_copy:
     cmds:
       - echo "Please copy the public SSH key above and add it to your git repository."
-      - echo "Go to Settings -> Deploy keys -> Add deploy key -> add title 'flux-system-ch10', paste the SSH public key, check 'Allow write access', and click 'Add key'."
+      - echo "In your GitHub repo go to Settings -> Deploy keys -> Add deploy key -> add title 'flux-system-ch10', paste the SSH public key, check 'Allow write access', and click 'Add key'."
       - echo "Press any key to continue after adding the public SSH key to your repository..."
       - read
     desc: Wait for user to copy SSH key
 
   create_flux_secret:
     cmds:
-      - echo "Please enter your GitHub username:"
-      - read github_username
-      - export GITHUB_USERNAME=$github_username; flux create secret git flux-system --url=ssh://git@github.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD --private-key-file=$HOME/.ssh/id_rsa_fluxcd_ch10
+      - flux create secret git flux-system --url=ssh://git@github.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD --private-key-file=$HOME/.ssh/id_rsa_fluxcd_ch10
     desc: Create Flux secret with private SSH key
 
   generate_age_key:
@@ -95,19 +93,14 @@ tasks:
 
   apply_flux_instance:
     cmds:
-      - if [ -z "$GITHUB_USERNAME" ]; then echo "GITHUB_USERNAME is not set. Please enter your GitHub username:"; read github_username; export GITHUB_USERNAME=$github_username; fi && \
-        kubectl apply -f https://raw.githubusercontent.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/infra/flux/flux-instance.yaml
+      - kubectl apply -f https://raw.githubusercontent.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/infra/flux/flux-instance.yaml
     desc: Deploy FluxInstance CRD
 
   create_aws_credentials_file:
     cmds:
-      - echo "Please enter your AWS access key ID:"
-      - read aws_access_key_id
-      - echo "Please enter your AWS secret access key:"
-      - read aws_secret_access_key
       - echo "[default]" > aws-credentials.txt
-      - echo "aws_access_key_id = $aws_access_key_id" >> aws-credentials.txt
-      - echo "aws_secret_access_key = $aws_secret_access_key" >> aws-credentials.txt
+      - echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> aws-credentials.txt
+      - echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> aws-credentials.txt
     desc: Create AWS credentials file 
 
   dry_run_create_aws_creds:
@@ -117,8 +110,7 @@ tasks:
 
   encrypt_aws_creds:
     cmds:
-      - export AGE_PUBLICKEY=$(grep 'public key' age.agekey | awk '{print $3}')
-      - sops --age=$AGE_PUBLICKEY --encrypt --encrypted-regex '^(data|stringData)$' --in-place aws-creds.yaml
+      - sops --age=$(grep 'public key' age.agekey | awk '{print $3}') --encrypt --encrypted-regex '^(data|stringData)$' --in-place aws-creds.yaml
     desc: Encrypt AWS credentials file with Age key
 
   push_aws_creds_to_repo:
