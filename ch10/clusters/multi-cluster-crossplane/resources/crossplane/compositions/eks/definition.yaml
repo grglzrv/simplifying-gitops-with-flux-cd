@@ -37,7 +37,9 @@ spec:
                 type: object
                 description: EKS configuration parameters.
                 properties:
-                  # Using subnetIds & securityGroupClusterIds from XNetworking to configure VPC
+                  mapUsers:
+                    type: string
+                    description: Users to map to the EKS cluster
                   subnetIds:
                     type: array
                     items:
@@ -89,6 +91,7 @@ spec:
                 - securityGroupClusterIds
                 - region
                 - nodeGroup
+                - mapUsers
             required:
             - clusterName
             - version

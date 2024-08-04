@@ -33,6 +33,9 @@ spec:
                 type: object
                 description: Cluster configuration parameters.
                 properties:
+                  mapUsers:
+                    type: string
+                    description: Users to map to the EKS cluster
                   region:
                     type: string
                   nodeGroup:
@@ -135,7 +138,11 @@ spec:
                     - ruleNames
                 required:
                 - region
+                - subnets
+                - vpc
                 - nodeGroup
+                - sg
+                - mapUsers
             required:
             - clusterName
             - version

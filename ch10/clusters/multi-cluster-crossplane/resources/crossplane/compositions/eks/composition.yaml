@@ -282,4 +282,58 @@ spec:
               matchControllerRef: true
               matchLabels:
                 role: nodegroup
-      
+
+    ### Kubernetes ProviderConfig for EKS Cluster
+    - name: kubernetesProviderConfig
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: ProviderConfig
+        spec:
+          credentials:
+            source: Secret
+            secretRef:
+              key: kubeconfig
+      patches:
+        - fromFieldPath: spec.clusterName
+          toFieldPath: metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-provider-config"
+        - fromFieldPath: spec.writeConnectionSecretToRef.namespace
+          toFieldPath: spec.credentials.secretRef.namespace
+        - fromFieldPath: spec.writeConnectionSecretToRef.name
+          toFieldPath: spec.credentials.secretRef.name
+
+    ### AWS Auth ConfigMap
+    - name: awsAuthConfigMap
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha2
+        kind: Object
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: v1
+              kind: ConfigMap
+              metadata:
+                name: aws-auth
+                namespace: kube-system
+          managementPolicies:
+            - Observe
+            - Create
+            - Update
+      patches:
+        - fromFieldPath: spec.parameters.mapUsers
+          toFieldPath: spec.forProvider.manifest.data.mapUsers
+        - fromFieldPath: spec.clusterName
+          toFieldPath: metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-aws-auth"
+        - fromFieldPath: spec.clusterName
+          toFieldPath: spec.providerConfigRef.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-provider-config"

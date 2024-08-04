@@ -93,10 +93,13 @@ spec:
                       - labels
                       - ruleNames
                   required:
-                    - region
+                  - region
+                  - vpc
+                  - subnets
+                  - sg
               required:
-                - clusterName
-                - parameters
+              - clusterName
+              - parameters
             status:
               type: object
               properties:
