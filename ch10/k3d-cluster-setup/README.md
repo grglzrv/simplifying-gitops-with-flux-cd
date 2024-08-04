@@ -7,7 +7,7 @@ This guide will walk you through setting up a local Kubernetes cluster with K3d 
 - [Docker](https://www.docker.com/products/docker-desktop) must be installed and running.
 - [Helm](https://helm.sh/docs/intro/install/) must be installed.
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed.
-- [flux-cli](https://fluxcd.io/flux/installation/) must be installed
+- [flux cli](https://fluxcd.io/flux/installation/) must be installed
 - [SOPS](https://github.com/getsops/sops/releases) must be installed.
 - [AGE](https://github.com/FiloSottile/age?tab=readme-ov-file#installation) must be installed.
 
