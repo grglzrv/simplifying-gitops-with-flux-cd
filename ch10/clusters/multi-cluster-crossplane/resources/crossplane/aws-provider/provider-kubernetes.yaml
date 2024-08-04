@@ -2,7 +2,6 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: provider-kubernetes
-  namespace: crossplane-system
 spec:
   serviceAccountTemplate:
     metadata:
@@ -17,4 +16,3 @@ spec:
   package: xpkg.upbound.io/crossplane-contrib/provider-kubernetes:v0.14.1
   runtimeConfigRef:
     name: provider-kubernetes
-    namespace: crossplane-system
