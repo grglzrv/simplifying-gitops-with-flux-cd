@@ -92,8 +92,6 @@ spec:
           toFieldPath: spec.parameters.nodeGroup.nodesDesiredSize
         - fromFieldPath: spec.parameters.nodeGroup.nodesMaxSize
           toFieldPath: spec.parameters.nodeGroup.nodesMaxSize
-        - fromFieldPath: spec.parameters.mapUsers
-          toFieldPath: spec.parameters.mapUsers
         - fromFieldPath: status.subnetIds
           toFieldPath: spec.parameters.subnetIds
           policy:
