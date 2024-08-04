@@ -13,7 +13,6 @@ tasks:
       - task: display_public_key
       - task: wait_for_key_copy
       - task: create_flux_secret
-      - task: install_age_and_sops
       - task: generate_age_key
       - task: create_sops_secret
       - task: apply_flux_instance
@@ -88,11 +87,6 @@ tasks:
       - export GITHUB_USERNAME=$github_username
       - flux create secret git flux-system --url=ssh://git@github.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD --private-key-file=~/.ssh/id_rsa_fluxcd_ch10
     desc: Create Flux secret with private SSH key
-
-  install_age_and_sops:
-    cmds:
-      - brew install age sops
-    desc: Install AGE and SOPS
 
   generate_age_key:
     cmds:

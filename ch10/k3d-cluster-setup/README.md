@@ -5,6 +5,12 @@ This guide will walk you through setting up a local Kubernetes cluster with K3d 
 ## Prerequisites
 
 - [Docker](https://www.docker.com/products/docker-desktop) must be installed and running.
+- [Helm](https://helm.sh/docs/intro/install/) must be installed.
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed.
+- [flux-cli](https://fluxcd.io/flux/installation/) must be installed
+- [SOPS](https://github.com/getsops/sops/releases) must be installed.
+- [AGE](https://github.com/FiloSottile/age?tab=readme-ov-file#installation) must be installed.
+
 
 ## Install Task
 
@@ -63,14 +69,13 @@ The `setup` task will perform the following steps:
 8. **Display Public Key**: Displays the public SSH key for you to add to your GitHub repository.
 9. **Wait for Key Copy**: Waits for you to add the SSH key to your GitHub repository.
 10. **Create Flux Secret**: Creates a Flux secret with the private SSH key.
-11. **Install Age and SOPS**: Installs Age and SOPS for secret management.
-12. **Generate Age Key**: Generates an Age key for encrypting secrets.
-13. **Create SOPS Secret**: Creates a Kubernetes secret for SOPS with the Age key.
-14. **Apply Flux Instance**: Deploys the Flux instance CRD.
-15. **Create AWS Credentials File**: Prompts you to create an AWS credentials file.
-16. **Dry Run Create AWS Creds**: Creates a local AWS credentials YAML file.
-17. **Encrypt AWS Creds**: Encrypts the AWS credentials file using Age.
-18. **Push AWS Creds to Repo**: Prompts you to push the encrypted AWS credentials file to your GitHub repository.
+11. **Generate AGE Key**: Generates an AGE key for encrypting secrets.
+12. **Create SOPS Secret**: Creates a Kubernetes secret for SOPS with the AGE key.
+13. **Apply Flux Instance**: Deploys the Flux instance CRD.
+14. **Create AWS Credentials File**: Prompts you to create an AWS credentials file.
+15. **Dry Run Create AWS Creds**: Creates a local AWS credentials YAML file.
+16. **Encrypt AWS Creds**: Encrypts the AWS credentials file using AGE.
+17. **Push AWS Creds to Repo**: Prompts you to push the encrypted AWS credentials file to your GitHub repository.
 19. **Print Setup Complete**: Prints a message indicating the setup is complete.
 
 ## Author
