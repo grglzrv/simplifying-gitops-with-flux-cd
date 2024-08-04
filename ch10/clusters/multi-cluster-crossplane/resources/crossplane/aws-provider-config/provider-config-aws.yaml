@@ -10,5 +10,3 @@ spec:
       namespace: crossplane-system
       name: aws-creds
       key: creds
-  assumeRoleChain:
-    - roleARN: "arn:aws:iam::603782460543:role/terraform_admin_role"
