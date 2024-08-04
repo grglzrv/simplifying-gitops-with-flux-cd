@@ -4,7 +4,6 @@ tasks:
   setup:
     cmds:
       - task: install_k3d
-      - task: unset_kubeconfig
       - task: create_cluster
       - task: verify_cluster
       - task: switch_context
@@ -27,13 +26,9 @@ tasks:
       - wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
     desc: Install k3d
 
-  unset_kubeconfig:
-    cmds:
-      - unset KUBECONFIG
-    desc: Unset KUBECONFIG
-
   create_cluster:
     cmds:
+      - unset KUBECONFIG
       - k3d cluster create -i rancher/k3s:v1.30.0-rc1-k3s1 -s 3 ch10-crossplane
     desc: Create Kubernetes cluster with k3d
 
