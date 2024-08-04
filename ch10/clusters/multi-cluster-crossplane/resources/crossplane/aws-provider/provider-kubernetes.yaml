@@ -6,7 +6,6 @@ spec:
   serviceAccountTemplate:
     metadata:
       name: provider-kubernetes
-      namespace: crossplane-system
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
