@@ -78,8 +78,7 @@ tasks:
     cmds:
       - echo "Please enter your GitHub username:"
       - read github_username
-      - export GITHUB_USERNAME=$github_username
-      - flux create secret git flux-system --url=ssh://git@github.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD --private-key-file=~/.ssh/id_rsa_fluxcd_ch10
+      - export GITHUB_USERNAME=$github_username; flux create secret git flux-system --url=ssh://git@github.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD --private-key-file=$HOME/.ssh/id_rsa_fluxcd_ch10
     desc: Create Flux secret with private SSH key
 
   generate_age_key:
@@ -96,8 +95,8 @@ tasks:
 
   apply_flux_instance:
     cmds:
-      - if [ -z "$GITHUB_USERNAME" ]; then echo "GITHUB_USERNAME is not set. Please enter your GitHub username:"; read github_username; export GITHUB_USERNAME=$github_username; fi
-      - kubectl apply -f https://raw.githubusercontent.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/infra/flux/flux-instance.yaml
+      - if [ -z "$GITHUB_USERNAME" ]; then echo "GITHUB_USERNAME is not set. Please enter your GitHub username:"; read github_username; export GITHUB_USERNAME=$github_username; fi && \
+        kubectl apply -f https://raw.githubusercontent.com/$GITHUB_USERNAME/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/infra/flux/flux-instance.yaml
     desc: Deploy FluxInstance CRD
 
   create_aws_credentials_file:
