@@ -302,8 +302,12 @@ spec:
                 fmt: "%s-provider-config"
         - fromFieldPath: spec.writeConnectionSecretToRef.namespace
           toFieldPath: spec.credentials.secretRef.namespace
-        - fromFieldPath: spec.writeConnectionSecretToRef.name
+        - fromFieldPath: spec.clusterName
           toFieldPath: spec.credentials.secretRef.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-access"
 
     ### AWS Auth ConfigMap
     - name: awsAuthConfigMap
