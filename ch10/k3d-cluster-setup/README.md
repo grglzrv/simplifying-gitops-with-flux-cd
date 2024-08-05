@@ -92,3 +92,5 @@ The `setup` task will perform the following steps:
 ## Author
 
 `Georgi Lazarov`
+
+#### Email: georgi@lazaroff.pro
