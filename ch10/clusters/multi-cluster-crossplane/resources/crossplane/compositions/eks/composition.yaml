@@ -31,6 +31,7 @@ spec:
           forProvider:
             accessConfig:
               - authenticationMode: CONFIG_MAP
+                bootstrapClusterCreatorAdminPermissions: true
             roleArnSelector:
               matchControllerRef: true
               matchLabels:
