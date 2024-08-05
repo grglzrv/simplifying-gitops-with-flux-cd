@@ -30,7 +30,7 @@ spec:
         spec:
           forProvider:
             accessConfig:
-              - authenticationMode: API_AND_CONFIG_MAP
+              - authenticationMode: CONFIG_MAP
             roleArnSelector:
               matchControllerRef: true
               matchLabels:
