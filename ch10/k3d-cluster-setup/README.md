@@ -34,21 +34,17 @@ This guide will walk you through setting up a local Kubernetes cluster with K3d 
     sudo mv ./bin/task /usr/local/bin/
     ```
 
-## Clone the Repository
-
-1. Clone this repository:
-    ```sh
-    git clone https://github.com/<your-github-username>/Simplifying-GitOps-with-FluxCD
-    cd Simplifying-GitOps-with-FluxCD
-    ```
-
-## Fork the Repository
+## Fork and clone the repository
 
 Before running the setup, you need to fork the repository:
 
 1. Go to [https://github.com/PacktPublishing/Simplifying-GitOps-with-FluxCD](https://github.com/PacktPublishing/Simplifying-GitOps-with-FluxCD) and fork the repository to your GitHub account.
 
-2. Clone your GitHub repository and go to `./ch10/k3d-cluster-setup` dir.
+2. Clone your GitHub repository and go to `./Simplifying-GitOps-with-FluxCD/ch10/k3d-cluster-setup` dir.
+    ```sh
+    git clone https://github.com/<your-github-username>/Simplifying-GitOps-with-FluxCD
+    cd ./Simplifying-GitOps-with-FluxCD/ch10/k3d-cluster-setup
+    ```
 
 ## Update the .env File
 
