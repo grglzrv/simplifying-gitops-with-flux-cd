@@ -94,6 +94,9 @@ spec:
                       - ruleNames
                   required:
                     - region
+                    - vpc
+                    - subnets
+                    - sg
               required:
                 - clusterName
                 - parameters

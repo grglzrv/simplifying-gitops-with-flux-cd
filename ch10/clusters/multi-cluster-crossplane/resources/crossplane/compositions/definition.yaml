@@ -133,9 +133,15 @@ spec:
                     required:
                     - labels
                     - ruleNames
+                  mapUsers:
+                    type: string
+                    description: Users to map to the EKS cluster
                 required:
                 - region
                 - nodeGroup
+                - vpc
+                - subnets
+                - sg
             required:
             - clusterName
             - version

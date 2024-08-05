@@ -83,6 +83,9 @@ spec:
                     required:
                     - nodesDesiredSize
                     - tags
+                  mapUsers:
+                    type: string
+                    description: Users to map to the EKS cluster
                 required:
                 - subnetIds
                 - securityGroupClusterIds

@@ -21,11 +21,11 @@ spec:
       tags:
        kubernetes.io/cluster/crossplane-eks-2: shared
        Name: crossplane-eks-2
-    mapUsers: |-
+    mapUsers: |
       - groups:
         - system:masters
-        userarn: arn:aws:iam::603782460543:user/georgi.lazarov@nexo.io
-        username: georgi.lazarov@nexo.io
+        userarn: arn:aws:iam::563782469212:user/georgi@lazaroff.pro
+        username: georgi@lazaroff.pro
     vpc:
       cidrBlock: "10.70.0.0/16"
       tags:
