@@ -1,4 +1,4 @@
 - groups:
   - system:masters
-  userarn: arn:aws:iam::603782460543:user/georgi.lazarov@nexo.io
-  username: georgi.lazarov@nexo.io
+  userarn: arn:aws:iam::563782469212:user/eks2@lazaroff.pro
+  username: eks2@lazaroff.pro
