@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - repos.yaml
   - apps.yaml
-  - sops.yaml
   - crossplane-providers.yaml
   - aws-provider-config.yaml
   - crossplane-compositions.yaml
