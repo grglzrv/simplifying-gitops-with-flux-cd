@@ -309,6 +309,8 @@ spec:
             - type: string
               string:
                 fmt: "%s-access"
+      readinessChecks:
+        - type: None
 
     ### AWS Auth ConfigMap
     - name: awsAuthConfigMap
