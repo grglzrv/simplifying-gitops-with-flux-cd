@@ -16,6 +16,8 @@ tasks:
       - task: create_flux_secret
       - task: generate_age_key
       - task: create_sops_secret
+      - task: update_flux_gitrepo_url
+      - task: push_flux_instance_update
       - task: apply_flux_instance
       - task: create_aws_credentials_file
       - task: dry_run_create_aws_creds
@@ -76,7 +78,7 @@ tasks:
 
   create_flux_secret:
     cmds:
-      - flux create secret git flux-system --url=ssh://git@github.com/{{.GITHUB_USERNAME}}/Simplifying-GitOps-with-FluxCD --private-key-file=$HOME/.ssh/id_rsa_fluxcd_ch10
+      - flux create secret git flux-system --url=ssh://git@github.com/{{.GITHUB_USERNAME}}/simplifying-gitops-with-flux-cd --private-key-file=$HOME/.ssh/id_rsa_fluxcd_ch10
     desc: Create Flux secret with private SSH key
 
   generate_age_key:
@@ -91,9 +93,21 @@ tasks:
       - cat age.agekey | kubectl create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
     desc: Create Kubernetes secret named "sops-age" with AGE key
 
+  update_flux_gitrepo_url:
+    cmds:
+      - sed -i '' "s|PacktPublishing|{{.GITHUB_USERNAME}}|g" ../clusters/multi-cluster-crossplane/apps/flux/flux-instance.yaml
+    desc: Update GITHUB_USERNAME in the Flux instance YAML file
+
+  push_flux_instance_update:
+    cmds:
+      - git add ../clusters/multi-cluster-crossplane/apps/flux/flux-instance.yaml
+      - git commit -m "Update GitRepository URL"
+      - git push
+    desc: Commit and push the updated Flux instance YAML file to the repository
+
   apply_flux_instance:
     cmds:
-      - kubectl apply -f https://raw.githubusercontent.com/{{.GITHUB_USERNAME}}/Simplifying-GitOps-with-FluxCD/main/ch10/clusters/multi-cluster-crossplane/apps/flux/flux-instance.yaml
+      - kubectl apply -f https://raw.githubusercontent.com/{{.GITHUB_USERNAME}}/simplifying-gitops-with-flux-cd/main/ch10/clusters/multi-cluster-crossplane/apps/flux/flux-instance.yaml
     desc: Deploy FluxInstance CRD
 
   create_aws_credentials_file:
@@ -105,20 +119,20 @@ tasks:
 
   dry_run_create_aws_creds:
     cmds:
-      - kubectl create secret generic aws-creds -n crossplane-system --from-file=creds=./aws-credentials.txt --dry-run=client -o yaml > aws-creds.yaml
+      - kubectl create secret generic aws-creds -n crossplane-system --from-file=creds=./aws-credentials.txt --dry-run=client -o yaml > ../clusters/multi-cluster-crossplane/resources/sops/aws-creds-sops.yaml
     desc: Dry-run to create local aws-creds.yaml file
 
   encrypt_aws_creds:
     cmds:
-      - sops --age=$(cat age.pub) --encrypt --encrypted-regex '^(data|stringData)$' --in-place aws-creds.yaml
+      - sops --age=$(cat age.pub) --encrypt --encrypted-regex '^(data|stringData)$' --in-place ../clusters/multi-cluster-crossplane/resources/sops/aws-creds-sops.yaml
     desc: Encrypt AWS credentials file with Age key
 
   push_aws_creds_to_repo:
     cmds:
-      - echo "Please push aws-creds.yaml to your git repository under ./ch10/multi-cluster-crossplane/resources/sops directory."
-      - echo "Press any key to continue after pushing the file..."
-      - read
-    desc: Push encrypted AWS credentials file to git repository
+      - git add ../clusters/multi-cluster-crossplane/resources/sops/aws-creds-sops.yaml
+      - git commit -m "Push aws creds"
+      - git push
+    desc: Commit and push the updated encrypted AWS creds YAML file to the repository
 
   print_setup_complete:
     cmds:
